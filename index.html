@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The AI Don — Using AI to simplify your finances. Powered by a real CPA with 13+ years of experience." />
+  <title>The AI Don</title>
+
+  <!-- Fonts: Syne (display) + Outfit (body) + Fira Code (mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ================================================
+       DESIGN TOKENS
+    ================================================ */
+    :root {
+      --bg-0: #07080f;
+      --bg-1: #0b0d18;
+      --bg-2: #0f1220;
+      --bg-3: #141829;
+      --border-s: rgba(255,255,255,0.06);
+      --border-m: rgba(109,77,255,0.22);
+      --border-g: rgba(109,77,255,0.55);
+      --indigo:   #6d4dff;
+      --indigo-l: #8f73ff;
+      --amber:    #f0a83a;
+      --sky:      #38b8f0;
+      --t1: #f0f1f8;
+      --t2: #9098b8;
+      --t3: #4d5470;
+      --r-sm: 8px;
+      --r-md: 14px;
+      --r-lg: 20px;
+      --r-xl: 26px;
+      --glow-i: 0 0 38px rgba(109,77,255,0.32), 0 0 80px rgba(109,77,255,0.10);
+      --glow-a: 0 0 32px rgba(240,168,58,0.35), 0 0 70px rgba(240,168,58,0.09);
+    }
+
+    /* ================================================
+       RESET & BASE
+    ================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-1);
+      color: var(--t1);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a  { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ================================================
+       ATMOSPHERIC BACKGROUND
+    ================================================ */
+    /* Dot-grid */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0;
+      background-image: radial-gradient(circle, rgba(109,77,255,0.065) 1px, transparent 1px);
+      background-size: 38px 38px;
+    }
+    /* Top violet bloom */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -180px; left: 50%;
+      transform: translateX(-50%);
+      width: 860px; height: 560px;
+      background: radial-gradient(ellipse, rgba(109,77,255,0.11) 0%, transparent 68%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ================================================
+       NAV
+    ================================================ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 6%;
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      background: rgba(7,8,15,0.76);
+      border-bottom: 1px solid var(--border-s);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo em { font-style: normal; color: var(--indigo-l); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem; font-weight: 500;
+      color: var(--t2); letter-spacing: 0.07em;
+      text-transform: uppercase;
+      transition: color 0.22s;
+    }
+    .nav-links a:hover { color: var(--t1); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: var(--indigo); color: #fff;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
+      border-radius: var(--r-sm);
+      transition: box-shadow 0.24s, transform 0.2s;
+    }
+    .nav-cta:hover { box-shadow: var(--glow-i); transform: translateY(-1px); }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      nav { padding: 18px 5%; }
+    }
+
+    /* ================================================
+       HERO
+    ================================================ */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 120px 6% 80px;
+      overflow: hidden;
+    }
+    .hero-bloom-amber {
+      position: absolute;
+      bottom: -140px; left: -80px;
+      width: 520px; height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(240,168,58,0.085) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1140px; margin: 0 auto; width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 460px;
+      gap: 64px;
+      align-items: center;
+    }
+
+    /* Kicker */
+    .kicker {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.7rem; color: var(--amber);
+      letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .kicker-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--amber);
+      box-shadow: 0 0 8px var(--amber);
+      animation: kdot 2.2s ease-in-out infinite;
+    }
+    @keyframes kdot {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.35; transform:scale(0.65); }
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3.2rem, 6.5vw, 5.8rem);
+      line-height: 0.96; letter-spacing: -0.01em;
+      margin-bottom: 22px;
+    }
+    h1 .grad {
+      background: linear-gradient(110deg, #fff 15%, var(--indigo-l) 52%, var(--amber) 92%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+      font-weight: 400; color: var(--t1);
+      margin-bottom: 13px; line-height: 1.4;
+    }
+    .hero-support {
+      font-size: 0.91rem; color: var(--t2);
+      line-height: 1.78; max-width: 420px;
+      margin-bottom: 38px;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 15px 34px;
+      background: var(--indigo); color: #fff;
+      font-weight: 600; font-size: 0.93rem; letter-spacing: 0.04em;
+      border-radius: var(--r-sm);
+      box-shadow: var(--glow-i);
+      transition: transform 0.22s, box-shadow 0.22s;
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.09) 0%, transparent 55%);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 55px rgba(109,77,255,0.62), 0 0 110px rgba(109,77,255,0.18); }
+    .btn-arrow { width: 18px; height: 18px; transition: transform 0.2s; }
+    .btn-primary:hover .btn-arrow { transform: translateX(4px); }
+
+    /* Avatar */
+    .hero-visual { position: relative; }
+    .avatar-border {
+      position: relative;
+      padding: 3px;
+      border-radius: var(--r-xl);
+      background: linear-gradient(135deg, var(--indigo) 0%, var(--amber) 48%, var(--sky) 100%);
+      background-size: 250% 250%;
+      animation: borderspin 5s linear infinite;
+      box-shadow: var(--glow-i);
+    }
+    @keyframes borderspin {
+      0%   { background-position: 0% 0%; }
+      100% { background-position: 250% 250%; }
+    }
+    .avatar-inner {
+      border-radius: calc(var(--r-xl) - 3px);
+      overflow: hidden; background: var(--bg-2);
+    }
+    .avatar-inner img { width: 100%; display: block; }
+
+    .stat-badge {
+      position: absolute;
+      bottom: 26px; left: -26px; z-index: 2;
+      background: var(--bg-2);
+      border: 1px solid var(--border-m);
+      border-radius: var(--r-md);
+      padding: 13px 17px;
+      box-shadow: var(--glow-i);
+      backdrop-filter: blur(10px);
+      animation: fbadge 3.6s ease-in-out infinite;
+    }
+    @keyframes fbadge {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-9px); }
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.85rem; font-weight: 800;
+      color: var(--amber); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.67rem; color: var(--t2);
+      letter-spacing: 0.07em; text-transform: uppercase; margin-top: 3px;
+    }
+
+    @media (max-width: 920px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { order: -1; max-width: 340px; margin: 0 auto; width: 100%; }
+      .stat-badge { left: -8px; bottom: 18px; }
+    }
+    @media (max-width: 480px) { .hero { padding: 108px 5% 68px; } }
+
+    /* ================================================
+       UTILITY
+    ================================================ */
+    .section { position: relative; z-index: 1; padding: 96px 6%; }
+    .s-inner { max-width: 1140px; margin: 0 auto; }
+    .s-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.69rem; color: var(--indigo-l);
+      letter-spacing: 0.22em; text-transform: uppercase;
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 9px;
+    }
+    .s-label::before { content: '//'; color: var(--t3); }
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      line-height: 1.06; letter-spacing: -0.01em;
+      margin-bottom: 18px;
+    }
+    .hairline {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-m), transparent);
+    }
+
+    /* ================================================
+       SECRET WEAPON
+    ================================================ */
+    #prompt {
+      background: var(--bg-1);
+      padding: 96px 6%;
+      position: relative; z-index: 1;
+    }
+    #prompt::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 860px; height: 580px;
+      background: radial-gradient(ellipse, rgba(109,77,255,0.085) 0%, transparent 62%);
+      pointer-events: none;
+    }
+    .prompt-wrap { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+    .prompt-lede {
+      font-size: 0.95rem; color: var(--t2);
+      line-height: 1.78; margin-bottom: 38px; max-width: 540px;
+    }
+
+    /* Steps row */
+    .steps-row {
+      display: flex; gap: 0;
+      border: 1px solid var(--border-s);
+      border-radius: var(--r-md);
+      background: var(--bg-2);
+      overflow: hidden; margin-bottom: 36px;
+    }
+    .step {
+      flex: 1; padding: 19px 18px;
+      display: flex; align-items: flex-start; gap: 12px;
+      border-right: 1px solid var(--border-s);
+    }
+    .step:last-child { border-right: none; }
+    .step-n {
+      min-width: 25px; height: 25px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--indigo), #4a2fcc);
+      color: #fff;
+      font-family: 'Fira Code', monospace; font-size: 0.67rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .step strong { display: block; font-size: 0.83rem; color: var(--t1); font-weight: 600; margin-bottom: 3px; }
+    .step span { font-size: 0.76rem; color: var(--t3); line-height: 1.45; }
+
+    @media (max-width: 600px) {
+      .steps-row { flex-direction: column; }
+      .step { border-right: none; border-bottom: 1px solid var(--border-s); }
+      .step:last-child { border-bottom: none; }
+    }
+
+    /* Prompt card — centrepiece */
+    .prompt-card {
+      position: relative;
+      border-radius: var(--r-xl); padding: 3px;
+      background: linear-gradient(135deg, var(--indigo) 0%, var(--amber) 46%, var(--sky) 100%);
+      box-shadow: var(--glow-i), var(--glow-a), 0 40px 100px rgba(0,0,0,0.55);
+    }
+    .prompt-card-body {
+      background: #06070e;
+      border-radius: calc(var(--r-xl) - 3px);
+      overflow: hidden;
+    }
+    .prompt-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 13px 20px;
+      background: rgba(109,77,255,0.07);
+      border-bottom: 1px solid var(--border-m);
+    }
+    .pbar-l { display: flex; align-items: center; gap: 7px; }
+    .wd { width: 11px; height: 11px; border-radius: 50%; }
+    .wd-r { background: #ff5f57; }
+    .wd-y { background: #febc2e; }
+    .wd-g { background: #28c840; }
+    .pfname { font-family: 'Fira Code', monospace; font-size: 0.69rem; color: var(--t3); margin-left: 7px; }
+
+    .copy-btn {
+      display: flex; align-items: center; gap: 7px;
+      padding: 7px 17px;
+      background: var(--indigo); color: #fff;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em;
+      border-radius: 6px;
+      box-shadow: 0 0 14px rgba(109,77,255,0.42);
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .copy-btn:hover { transform: scale(1.05); box-shadow: 0 0 28px rgba(109,77,255,0.7); }
+    .copy-btn svg { width: 13px; height: 13px; }
+
+    .prompt-text {
+      padding: 26px 26px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem; line-height: 1.9;
+      color: #b5bedd;
+      white-space: pre-wrap; word-break: break-word;
+      max-height: 490px; overflow-y: auto;
+    }
+    .prompt-text::-webkit-scrollbar { width: 4px; }
+    .prompt-text::-webkit-scrollbar-track { background: transparent; }
+    .prompt-text::-webkit-scrollbar-thumb { background: rgba(109,77,255,0.28); border-radius: 10px; }
+
+    .prompt-note {
+      text-align: center; margin-top: 18px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.76rem; color: var(--t3); font-style: italic;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed; bottom: 28px; left: 50%;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--bg-3); border: 1px solid var(--border-g);
+      color: var(--t1); padding: 11px 24px;
+      border-radius: var(--r-sm); font-size: 0.82rem; font-weight: 500;
+      opacity: 0; transition: opacity 0.3s, transform 0.3s;
+      z-index: 500; pointer-events: none; white-space: nowrap;
+      box-shadow: var(--glow-i);
+    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ================================================
+       STAY CONNECTED
+    ================================================ */
+    #social { background: var(--bg-0); padding: 96px 6%; }
+    .social-c {
+      max-width: 660px; margin: 0 auto; text-align: center;
+    }
+    .social-c .s-label { justify-content: center; }
+    .social-c h2 { margin-bottom: 12px; }
+    .social-tag {
+      font-size: 0.95rem; color: var(--t2); line-height: 1.7; margin-bottom: 48px;
+    }
+    .social-row {
+      display: flex; justify-content: center; gap: 18px; flex-wrap: wrap;
+    }
+    .scard {
+      display: flex; flex-direction: column; align-items: center; gap: 11px;
+      width: 112px; padding: 24px 14px 20px;
+      background: var(--bg-2); border: 1px solid var(--border-s);
+      border-radius: var(--r-lg);
+      transition: border-color 0.28s, transform 0.28s, box-shadow 0.28s;
+    }
+    .scard:hover { transform: translateY(-6px); border-color: var(--border-m); }
+    .scard.ig:hover { box-shadow: 0 0 32px rgba(225,48,108,0.22); }
+    .scard.tk:hover { box-shadow: 0 0 32px rgba(56,184,240,0.22); }
+    .scard.yt:hover { box-shadow: 0 0 32px rgba(255,68,68,0.24); }
+    .scard.fb:hover { box-shadow: 0 0 32px rgba(24,119,242,0.22); }
+    .sicon {
+      width: 46px; height: 46px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .scard.ig .sicon { background: rgba(225,48,108,0.10); }
+    .scard.tk .sicon { background: rgba(56,184,240,0.10); }
+    .scard.yt .sicon { background: rgba(255,68,68,0.10); }
+    .scard.fb .sicon { background: rgba(24,119,242,0.10); }
+    .scard svg { width: 24px; height: 24px; }
+    .scard.ig svg { color: #e1306c; }
+    .scard.tk svg { color: var(--sky); }
+    .scard.yt svg { color: #ff4444; }
+    .scard.fb svg { color: #1877f2; }
+    .sname { font-size: 0.7rem; color: var(--t3); letter-spacing: 0.07em; text-transform: uppercase; font-weight: 500; }
+
+    /* ================================================
+       FOOTER
+    ================================================ */
+    footer {
+      position: relative; z-index: 1;
+      background: var(--bg-1);
+      border-top: 1px solid var(--border-s);
+      padding: 34px 6%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .f-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; }
+    .f-logo em { font-style: normal; color: var(--indigo-l); }
+    .f-tag { font-family: 'Fira Code', monospace; font-size: 0.71rem; color: var(--t3); }
+    .f-copy { font-size: 0.74rem; color: var(--t3); }
+
+    /* ================================================
+       SCROLL REVEAL
+    ================================================ */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.62s ease, transform 0.62s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .rd1 { transition-delay: 0.08s; }
+    .rd2 { transition-delay: 0.16s; }
+    .rd3 { transition-delay: 0.24s; }
+    .rd4 { transition-delay: 0.32s; }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================
+       NAV
+  ================================================ -->
+  <nav aria-label="Primary navigation">
+    <div class="nav-logo">The <em>AI</em> Don</div>
+    <ul class="nav-links">
+      <li><a href="#prompt">The Prompt</a></li>
+      <li><a href="#social">Follow</a></li>
+    </ul>
+    <a href="#prompt" class="nav-cta">Get the Prompt</a>
+  </nav>
+
+  <!-- ================================================
+       HERO
+  ================================================ -->
+  <section class="hero" id="home" aria-label="Hero">
+    <div class="hero-bloom-amber" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <!-- Text -->
+      <div>
+        <div class="kicker">
+          <div class="kicker-dot"></div>
+          CPA · AI · Finance
+        </div>
+        <h1><span class="grad">The AI Don</span></h1>
+        <p class="hero-sub">Using AI to simplify your finances.</p>
+        <p class="hero-support">
+          Powered by a real CPA with 13+ years of experience in high-growth tech and public accounting.
+        </p>
+        <a href="#prompt" class="btn-primary">
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+          Get the Prompt
+        </a>
+      </div>
+
+      <!-- Avatar -->
+      <div class="hero-visual">
+        <div class="avatar-border">
+          <div class="avatar-inner">
+            <img src="ai-don-avatar.png" alt="The AI Don avatar" />
+          </div>
+        </div>
+        <div class="stat-badge" aria-label="13 plus years CPA experience">
+          <div class="stat-num">13+</div>
+          <div class="stat-label">Years CPA<br>Experience</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hairline"></div>
+
+  <!-- ================================================
+       SECRET WEAPON
+  ================================================ -->
+  <section id="prompt" aria-label="The Secret Weapon">
+    <div class="prompt-wrap">
+      <div class="s-label reveal">The Secret Weapon</div>
+      <h2 class="reveal rd1">The Exact Prompt</h2>
+
+      <p class="prompt-lede reveal rd2">
+        This is the exact prompt I use in my videos. Copy it, paste your credit card transactions into Claude, and watch it transform raw data into clear financial decisions — in under 60 seconds.
+      </p>
+
+      <!-- Steps -->
+      <div class="steps-row reveal rd3">
+        <div class="step">
+          <div class="step-n">1</div>
+          <div>
+            <strong>Export Transactions</strong>
+            <span>Download your credit card statement as a CSV file.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div>
+            <strong>Upload into Claude</strong>
+            <span>Paste or upload your transactions directly into Claude.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div>
+            <strong>Run This Prompt</strong>
+            <span>Copy the prompt below, paste it in, and hit send.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- The Prompt Card -->
+      <div class="prompt-card reveal rd4">
+        <div class="prompt-card-body">
+          <div class="prompt-bar">
+            <div class="pbar-l">
+              <div class="wd wd-r"></div>
+              <div class="wd wd-y"></div>
+              <div class="wd wd-g"></div>
+              <span class="pfname">the-ai-don-prompt.txt</span>
+            </div>
+            <button class="copy-btn" id="copyBtn" onclick="copyPrompt()" aria-label="Copy prompt to clipboard">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+              </svg>
+              Copy Prompt
+            </button>
+          </div>
+
+          <div class="prompt-text" id="promptContent">You are a financial expert with CPA-level knowledge, but your job is to explain everything in very simple, everyday language that anyone can understand.
+
+Analyze the provided credit card transaction data and turn it into clear, useful insights about spending habits.
+
+IMPORTANT: Your output must be formatted for a mobile screen (608 x 1080).
+- Keep sections short and easy to scroll
+- Use bullet points
+- Avoid long paragraphs
+- Use spacing between sections
+- Each section should feel like a "card" or "slide"
+
+---
+
+### 1. ORGANIZE SPENDING
+- Group all transactions into simple categories:
+  Food & Dining, Groceries, Shopping, Travel, Bills & Utilities, Subscriptions, Transportation, Entertainment, Health, Other
+- Combine similar vendors (e.g., Starbucks, Uber, Amazon)
+
+Show:
+- Total spend per category
+- Top 3 categories
+
+---
+
+### 2. SUBSCRIPTIONS & RECURRING CHARGES
+Find repeating charges based on:
+- Same vendor
+- Similar amount
+- Regular timing
+
+Show:
+- List of subscriptions
+- Monthly cost per subscription
+- Total monthly subscription spend
+
+Flag clearly:
+- Anything that looks unnecessary, forgotten, or duplicated
+
+---
+
+### 3. SPENDING BREAKDOWN (SIMPLE VIEW)
+Explain in plain English:
+- Where most of the money is going
+- Top vendors
+- Any surprising spending patterns
+
+---
+
+### 4. MONTH-OVER-MONTH TRENDS
+- Compare spending month by month
+- Show:
+  - What increased
+  - What decreased
+
+Explain simply, like:
+"You spent more on eating out this month compared to last month"
+
+---
+
+### 5. SPENDING AUDIT (HONEST REVIEW)
+Act like a financial coach.
+
+Point out:
+- Wasteful spending
+- Duplicate charges
+- Unusual spikes
+- Areas where spending seems too high
+
+Be direct but helpful.
+
+---
+
+### 6. HOW TO SAVE MONEY
+Give simple, clear actions:
+- What to cancel
+- What to reduce
+- What to watch
+
+Estimate:
+- Monthly savings
+- Yearly savings
+
+---
+
+### 7. SIMPLE BUDGET (REST OF YEAR)
+Create an easy monthly budget:
+- Spending by category
+- Suggested limits
+- Recommended monthly savings amount
+
+Keep it realistic.
+
+---
+
+### 8. FINAL SUMMARY (VERY SHORT)
+In plain English:
+- Where your money is going
+- Biggest problem
+- Quick win to fix
+- Total savings opportunity
+
+---
+
+### OUTPUT FORMAT (VERY IMPORTANT)
+Format the response like a mobile dashboard.
+
+Use this structure:
+
+SECTION TITLE (with emoji)
+Short bullets (max 5 per section)
+
+Example:
+
+💳 Spending Overview
+• You spend most on food and shopping
+• Dining out is your biggest expense
+• Amazon is your top vendor
+
+Keep each section concise so it fits naturally on a phone screen.
+Avoid long text blocks.
+
+---
+
+The goal is to turn raw credit card data into simple, clear decisions anyone can understand in under 60 seconds.</div>
+        </div>
+      </div>
+
+      <p class="prompt-note reveal">✦ Works with Claude at claude.ai ✦</p>
+    </div>
+  </section>
+
+  <div class="hairline"></div>
+
+  <!-- ================================================
+       STAY CONNECTED
+  ================================================ -->
+  <section id="social" aria-label="Stay Connected">
+    <div class="social-c">
+      <div class="s-label">Stay Connected</div>
+      <h2 class="reveal">Follow The AI Don</h2>
+      <p class="social-tag reveal rd1">
+        New prompts, real-world finance walkthroughs, and AI tutorials — follow along everywhere.
+      </p>
+
+      <div class="social-row">
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/the.ai.don/" class="scard ig reveal rd1"
+           target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram">
+          <div class="sicon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4.2"/>
+              <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <span class="sname">Instagram</span>
+        </a>
+
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@the_ai.don?lang=en" class="scard tk reveal rd2"
+           target="_blank" rel="noopener noreferrer" aria-label="Follow on TikTok">
+          <div class="sicon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.2 8.2 0 004.79 1.53V6.78a4.85 4.85 0 01-1.02-.09z"/>
+            </svg>
+          </div>
+          <span class="sname">TikTok</span>
+        </a>
+
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@The.AI.Don.Official" class="scard yt reveal rd3"
+           target="_blank" rel="noopener noreferrer" aria-label="Subscribe on YouTube">
+          <div class="sicon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/>
+            </svg>
+          </div>
+          <span class="sname">YouTube</span>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/profile.php?id=61576820053206&mibextid=wwXIfr" class="scard fb reveal rd4"
+           target="_blank" rel="noopener noreferrer" aria-label="Follow on Facebook">
+          <div class="sicon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </div>
+          <span class="sname">Facebook</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       FOOTER
+  ================================================ -->
+  <footer aria-label="Footer">
+    <div class="f-logo">The <em>AI</em> Don</div>
+    <div class="f-tag">// AI meets real finance</div>
+    <div class="f-copy">© 2025 The AI Don. All rights reserved.</div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" role="status" aria-live="polite">✓ Prompt copied!</div>
+
+  <!-- ================================================
+       JAVASCRIPT
+  ================================================ -->
+  <script>
+    /* Copy prompt to clipboard */
+    function copyPrompt() {
+      var text = document.getElementById('promptContent').innerText;
+      var btn  = document.getElementById('copyBtn');
+
+      function onSuccess() {
+        showToast();
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" width="13" height="13"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!';
+        setTimeout(function() {
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg> Copy Prompt';
+        }, 2700);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(onSuccess).catch(fallback);
+      } else { fallback(); }
+
+      function fallback() {
+        var el = document.createElement('textarea');
+        el.value = text;
+        el.style.cssText = 'position:fixed;opacity:0;pointer-events:none;';
+        document.body.appendChild(el);
+        el.focus(); el.select();
+        try { document.execCommand('copy'); onSuccess(); } catch(e) {}
+        document.body.removeChild(el);
+      }
+    }
+
+    function showToast() {
+      var t = document.getElementById('toast');
+      t.classList.add('show');
+      setTimeout(function() { t.classList.remove('show'); }, 2500);
+    }
+
+    /* Scroll reveal */
+    var ro = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function(el) { ro.observe(el); });
+
+    /* Nav active highlight */
+    var navAs = document.querySelectorAll('.nav-links a');
+    var so = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          navAs.forEach(function(a) {
+            a.style.color = '';
+            if (a.getAttribute('href') === '#' + e.target.id) a.style.color = '#f0f1f8';
+          });
+        }
+      });
+    }, { threshold: 0.45 });
+    document.querySelectorAll('section[id]').forEach(function(s) { so.observe(s); });
+  </script>
+
+</body>
+</html>
