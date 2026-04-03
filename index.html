@@ -443,120 +443,6 @@
     line-height: 1.65;
   }
 
-  /* SECRET WEAPONS */
-  #weapons { background: var(--bg2); }
-  .weapons-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: start;
-    margin-top: 56px;
-  }
-  .weapons-intro {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    font-weight: 300;
-    line-height: 1.7;
-    margin-bottom: 32px;
-  }
-  .weapon-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 20px;
-    padding: 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    transition: background 0.2s, border-color 0.2s;
-  }
-  .weapon-item:hover {
-    background: var(--surface-hover);
-    border-color: rgba(124,106,247,0.2);
-  }
-  .weapon-icon {
-    font-size: 1.6rem;
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(124,106,247,0.1);
-    border-radius: 10px;
-  }
-  .weapon-name {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-    color: var(--text);
-  }
-  .weapon-desc {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    font-weight: 300;
-    line-height: 1.55;
-  }
-  .weapons-visual {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 36px;
-    position: relative;
-    overflow: hidden;
-  }
-  .weapons-visual::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, rgba(56,189,248,0.12) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-  .weapons-visual-title {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: var(--accent2);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    font-size: 0.78rem;
-  }
-  .mini-dashboard {
-    background: rgba(0,0,0,0.3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 20px;
-    font-size: 0.82rem;
-    font-family: 'DM Mono', 'Courier New', monospace;
-    color: var(--green);
-  }
-  .mini-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    align-items: center;
-  }
-  .mini-row:last-child { margin-bottom: 0; }
-  .mini-label { color: var(--text-muted); }
-  .mini-bar-wrap {
-    flex: 1;
-    margin: 0 12px;
-    height: 4px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 999px;
-    overflow: hidden;
-  }
-  .mini-bar {
-    height: 100%;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-  }
-  @media (max-width: 768px) {
-    .weapons-layout { grid-template-columns: 1fr; gap: 32px; }
-  }
 
   /* PROMPT SECTION */
   #prompt { background: var(--bg); }
@@ -866,7 +752,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#what">What I Do</a></li>
     <li><a href="#prompt">Get the Prompt</a></li>
-    <li><a href="#how">How It Works</a></li>
+    <li><a href="#prompt">How It Works</a></li>
     <li><a href="#connect">Connect</a></li>
   </ul>
 </nav>
@@ -910,7 +796,7 @@
     <h2 class="section-title">Real experience.<br>Real results.</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>I'm a <strong>licensed CPA</strong> with 13 years of experience working across public accounting and fast-growing technology companies. I've spent over a decade helping businesses understand where their money is actually going.</p>
+        <p>I'm a <strong>licensed CPA</strong> with 13 years of experience working across public accounting and high-growth tech.</p>
         <p>Now I'm bringing that same thinking to everyday people — using AI to do the heavy lifting. I test prompts on real financial data so you don't have to guess. No jargon, no complicated reports. Just <strong>clear, honest answers about your money.</strong></p>
         <p>The goal is simple: make finances feel less intimidating and a lot more useful, right from your phone.</p>
       </div>
@@ -977,92 +863,36 @@
   </div>
 </section>
 
-<!-- SECRET WEAPONS -->
-<section id="weapons">
-  <div class="container">
-    <p class="section-label">The Secret Weapons</p>
-    <h2 class="section-title">Powered by the<br>right tools.</h2>
-    <div class="weapons-layout">
-      <div>
-        <p class="weapons-intro">I use a small but powerful set of tools that make complex financial analysis feel effortless. No complicated software. No expensive subscriptions required.</p>
-        <div class="weapon-item">
-          <div class="weapon-icon">🧠</div>
-          <div>
-            <div class="weapon-name">Smarter AI Prompts</div>
-            <p class="weapon-desc">Carefully crafted prompts that tell AI exactly how to analyze your spending — built by a CPA who knows what questions to ask.</p>
-          </div>
-        </div>
-        <div class="weapon-item">
-          <div class="weapon-icon">⚡</div>
-          <div>
-            <div class="weapon-name">Claude</div>
-            <p class="weapon-desc">The AI model that powers the financial analysis — turning raw transaction data into clean, readable insights.</p>
-          </div>
-        </div>
-        <div class="weapon-item">
-          <div class="weapon-icon">📋</div>
-          <div>
-            <div class="weapon-name">Your Own Transaction Data</div>
-            <p class="weapon-desc">Export your credit card statement, paste it in, and let AI do the heavy lifting. Nothing fancy required.</p>
-          </div>
-        </div>
-        <div class="weapon-item">
-          <div class="weapon-icon">📱</div>
-          <div>
-            <div class="weapon-name">Mobile-First Insights</div>
-            <p class="weapon-desc">Every output is formatted to read cleanly on your phone — like a personalized finance dashboard in your pocket.</p>
-          </div>
-        </div>
-      </div>
-      <div class="weapons-visual">
-        <div class="weapons-visual-title">Live Spending Snapshot</div>
-        <div class="mini-dashboard">
-          <div class="mini-row">
-            <span class="mini-label">Dining</span>
-            <div class="mini-bar-wrap"><div class="mini-bar" style="width:82%"></div></div>
-            <span>$847</span>
-          </div>
-          <div class="mini-row">
-            <span class="mini-label">Shopping</span>
-            <div class="mini-bar-wrap"><div class="mini-bar" style="width:65%"></div></div>
-            <span>$612</span>
-          </div>
-          <div class="mini-row">
-            <span class="mini-label">Subscriptions</span>
-            <div class="mini-bar-wrap"><div class="mini-bar" style="width:38%"></div></div>
-            <span>$289</span>
-          </div>
-          <div class="mini-row">
-            <span class="mini-label">Travel</span>
-            <div class="mini-bar-wrap"><div class="mini-bar" style="width:25%"></div></div>
-            <span>$194</span>
-          </div>
-          <div class="mini-row">
-            <span class="mini-label">Groceries</span>
-            <div class="mini-bar-wrap"><div class="mini-bar" style="width:44%"></div></div>
-            <span>$341</span>
-          </div>
-        </div>
-        <div style="margin-top:24px; padding-top:20px; border-top:1px solid var(--border);">
-          <div style="font-size:0.75rem; color:var(--text-dim); margin-bottom:12px; letter-spacing:0.06em; text-transform:uppercase;">Quick Wins Found</div>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <div style="background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.18); border-radius:8px; padding:10px 14px; font-size:0.82rem; color:var(--green);">✓ 3 forgotten subscriptions</div>
-            <div style="background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.18); border-radius:8px; padding:10px 14px; font-size:0.82rem; color:var(--green);">✓ $127/mo in potential savings</div>
-            <div style="background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.18); border-radius:8px; padding:10px 14px; font-size:0.82rem; color:var(--green);">✓ Duplicate charge detected</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- FEATURED PROMPT -->
+<!-- HOW IT WORKS + FEATURED PROMPT (combined) -->
 <section id="prompt">
   <div class="container">
+    <p class="section-label">How It Works</p>
+    <h2 class="section-title">Three steps.<br>That's it.</h2>
+    <p class="section-sub">You don't need to be tech-savvy. If you can copy and paste, you can do this.</p>
+    <div class="steps-grid" style="margin-bottom: 72px;">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <span class="step-emoji">📄</span>
+        <div class="step-title">Export Your Transactions</div>
+        <p class="step-desc">Log into your credit card account and download or copy your recent transactions. Most banks let you export as a CSV or simple text file.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <span class="step-emoji">⚡</span>
+        <div class="step-title">Paste into Claude</div>
+        <p class="step-desc">Copy the prompt below, open Claude, paste the prompt, then add your transaction data right below it. Hit send and let the AI get to work.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <span class="step-emoji">💡</span>
+        <div class="step-title">Read Your Insights</div>
+        <p class="step-desc">Get a clear, organized breakdown of your spending in plain English — formatted for your phone and ready to act on in under a minute.</p>
+      </div>
+    </div>
     <p class="section-label">The Prompt</p>
     <h2 class="section-title">Copy this. Paste it.<br>See what you find.</h2>
     <p class="prompt-intro">This is the exact prompt I use to analyze credit card transactions with AI. It's built to give you CPA-level insights in plain, everyday language — organized for your phone.</p>
-    <div class="prompt-note">📋 Paste your transaction data at the end of this prompt before sending it to Claude</div>
     <div class="prompt-wrapper">
       <div class="prompt-header">
         <div class="prompt-dots">
@@ -1202,34 +1032,6 @@ The goal is to turn raw credit card data into simple, clear decisions anyone can
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how">
-  <div class="container">
-    <p class="section-label">How It Works</p>
-    <h2 class="section-title">Three steps.<br>That's it.</h2>
-    <p class="section-sub">You don't need to be tech-savvy. If you can copy and paste, you can do this.</p>
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-num">1</div>
-        <span class="step-emoji">📄</span>
-        <div class="step-title">Export Your Transactions</div>
-        <p class="step-desc">Log into your credit card account and download or copy your recent transactions. Most banks let you export as a CSV or simple text file.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">2</div>
-        <span class="step-emoji">⚡</span>
-        <div class="step-title">Paste into Claude</div>
-        <p class="step-desc">Copy the prompt above, open Claude, paste the prompt, then add your transaction data right below it. Hit send and let the AI get to work.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">3</div>
-        <span class="step-emoji">💡</span>
-        <div class="step-title">Read Your Insights</div>
-        <p class="step-desc">Get a clear, organized breakdown of your spending in plain English — formatted for your phone and ready to act on in under a minute.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- STAY CONNECTED -->
 <section id="connect">
@@ -1239,7 +1041,7 @@ The goal is to turn raw credit card data into simple, clear decisions anyone can
     <p class="connect-intro">New prompts, tips, and AI finance tricks — delivered where you already spend your time. Follow The AI Don on your favorite platform.</p>
     <div class="social-grid">
       <a href="https://www.instagram.com/the.ai.don/" target="_blank" rel="noopener noreferrer" class="social-card instagram">
-        <div class="social-icon-wrap">📷</div>
+        <div class="social-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f09433"/><stop offset="25%" style="stop-color:#e6683c"/><stop offset="50%" style="stop-color:#dc2743"/><stop offset="75%" style="stop-color:#cc2366"/><stop offset="100%" style="stop-color:#bc1888"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="5.5" ry="5.5" fill="url(#ig-grad)"/><rect x="7" y="7" width="10" height="10" rx="2.5" ry="2.5" fill="none" stroke="white" stroke-width="1.6"/><circle cx="12" cy="12" r="3" fill="none" stroke="white" stroke-width="1.6"/><circle cx="17" cy="7" r="1" fill="white"/></svg></div>
         <div class="social-info">
           <div class="social-name">Instagram</div>
           <div class="social-handle">@the.ai.don</div>
@@ -1247,7 +1049,7 @@ The goal is to turn raw credit card data into simple, clear decisions anyone can
         <span class="social-arrow">→</span>
       </a>
       <a href="https://www.tiktok.com/@the_ai.don?lang=en" target="_blank" rel="noopener noreferrer" class="social-card tiktok">
-        <div class="social-icon-wrap">🎵</div>
+        <div class="social-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.19 8.19 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z"/></svg></div>
         <div class="social-info">
           <div class="social-name">TikTok</div>
           <div class="social-handle">@the_ai.don</div>
@@ -1255,7 +1057,7 @@ The goal is to turn raw credit card data into simple, clear decisions anyone can
         <span class="social-arrow">→</span>
       </a>
       <a href="https://www.youtube.com/@The.AI.Don.Official" target="_blank" rel="noopener noreferrer" class="social-card youtube">
-        <div class="social-icon-wrap">▶️</div>
+        <div class="social-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
         <div class="social-info">
           <div class="social-name">YouTube</div>
           <div class="social-handle">@The.AI.Don.Official</div>
@@ -1263,7 +1065,7 @@ The goal is to turn raw credit card data into simple, clear decisions anyone can
         <span class="social-arrow">→</span>
       </a>
       <a href="https://www.facebook.com/profile.php?id=61576820053206&mibextid=wwXIfr&mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-card facebook">
-        <div class="social-icon-wrap">👥</div>
+        <div class="social-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
         <div class="social-info">
           <div class="social-name">Facebook</div>
           <div class="social-handle">The AI Don</div>
