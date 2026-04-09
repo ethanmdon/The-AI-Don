@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The AI Don – Simplifying Finances with AI</title>
+<title>The AI Don – Free AI Prompts for Personal Finance</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -24,582 +24,305 @@
   --accent: #b0a6ff;
   --nav-h: 60px;
 }
-
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--bg);color:var(--text);
-  overflow-x:hidden;line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-}
-
-/* NOISE OVERLAY */
-body::after{
-  content:'';position:fixed;inset:0;z-index:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events:none;opacity:0.5;
-}
-
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased;}
+body::after{content:'';position:fixed;inset:0;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;opacity:0.5;}
 .orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(90px);}
 .orb1{width:500px;height:500px;background:rgba(124,111,247,0.12);top:-150px;right:-150px;}
 .orb2{width:400px;height:400px;background:rgba(56,217,245,0.06);bottom:5%;left:-150px;}
-
 section{position:relative;z-index:1;}
 .container{max-width:1100px;margin:0 auto;padding:0 20px;}
 @media(min-width:768px){.container{padding:0 40px;}}
 @media(min-width:1200px){.container{padding:0 60px;}}
 
-/* ═══════════════════════════════════════
-   NAV
-═══════════════════════════════════════ */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  height:var(--nav-h);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;
-  background:rgba(7,9,15,0.92);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:rgba(7,9,15,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
 @media(min-width:768px){nav{padding:0 40px;}}
-
-.logo{
-  font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;
-  white-space:nowrap;letter-spacing:-0.02em;
-  background:linear-gradient(130deg,#fff 0%,var(--accent) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;text-decoration:none;flex-shrink:0;
-}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;white-space:nowrap;letter-spacing:-0.02em;background:linear-gradient(130deg,#fff 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;flex-shrink:0;}
 .nav-links{display:none;gap:28px;list-style:none;}
 .nav-links a{color:var(--muted);font-size:0.88rem;font-weight:500;text-decoration:none;transition:color .2s;}
 .nav-links a:hover{color:var(--text);}
 @media(min-width:900px){.nav-links{display:flex;}}
-
 .nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-.nav-cta{
-  background:linear-gradient(135deg,var(--purple),var(--blue));
-  color:#fff;font-family:'Syne',sans-serif;
-  font-weight:700;font-size:0.82rem;
-  padding:9px 18px;border-radius:50px;
-  text-decoration:none;border:none;cursor:pointer;
-  box-shadow:0 0 18px var(--glow);transition:all .3s;white-space:nowrap;
-}
+.nav-cta{background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:0.82rem;padding:9px 18px;border-radius:50px;text-decoration:none;border:none;cursor:pointer;box-shadow:0 0 18px var(--glow);transition:all .3s;white-space:nowrap;}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 28px var(--glow);}
-.hamburger{
-  display:flex;background:none;border:none;
-  cursor:pointer;flex-direction:column;gap:5px;padding:6px;
-}
-.hamburger span{
-  display:block;width:22px;height:2px;
-  background:var(--text);border-radius:2px;transition:all .3s;
-}
+.hamburger{display:flex;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s;}
 @media(min-width:900px){.hamburger{display:none;}}
-
-.mobile-menu{
-  display:none;position:fixed;
-  top:var(--nav-h);left:0;right:0;
-  background:rgba(7,9,15,0.98);backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--border);
-  padding:20px;flex-direction:column;gap:4px;z-index:99;
-}
+.mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:rgba(7,9,15,0.98);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:20px;flex-direction:column;gap:4px;z-index:99;}
 .mobile-menu.open{display:flex;}
-.mobile-menu a{
-  color:var(--text);text-decoration:none;font-size:1rem;
-  font-weight:500;padding:14px 0;
-  border-bottom:1px solid var(--border);transition:color .2s;
-}
+.mobile-menu a{color:var(--text);text-decoration:none;font-size:1rem;font-weight:500;padding:14px 0;border-bottom:1px solid var(--border);transition:color .2s;}
 .mobile-menu a:last-child{border-bottom:none;}
 .mobile-menu a:hover{color:var(--accent);}
 
-/* ═══════════════════════════════════════
-   HERO — mobile-first single column
-═══════════════════════════════════════ */
-#hero{
-  min-height:100svh;
-  display:flex;align-items:center;
-  padding:calc(var(--nav-h) + 48px) 20px 60px;
-}
+/* HERO */
+#hero{min-height:100svh;display:flex;align-items:center;padding:calc(var(--nav-h) + 48px) 20px 60px;}
 @media(min-width:768px){#hero{padding:calc(var(--nav-h) + 64px) 40px 80px;}}
-
-.hero-inner{
-  max-width:1100px;margin:0 auto;width:100%;
-  display:flex;flex-direction:column;gap:40px;
-}
-@media(min-width:900px){
-  .hero-inner{
-    display:grid;grid-template-columns:1.1fr 0.9fr;
-    gap:56px;align-items:center;
-  }
-}
-
-/* text block always first */
+.hero-inner{max-width:1100px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:40px;}
+@media(min-width:900px){.hero-inner{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}}
 .hero-text{order:1;}
 .hero-visual{order:2;}
-
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(124,111,247,0.09);
-  border:1px solid rgba(124,111,247,0.28);
-  border-radius:50px;padding:6px 14px;
-  font-size:0.72rem;color:var(--accent);
-  font-family:'Syne',sans-serif;font-weight:700;
-  letter-spacing:0.08em;text-transform:uppercase;
-  margin-bottom:20px;
-}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(124,111,247,0.09);border:1px solid rgba(124,111,247,0.28);border-radius:50px;padding:6px 14px;font-size:0.72rem;color:var(--accent);font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px;}
 .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:blink 1.8s infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
-
-h1{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(2rem,8vw,3.8rem);
-  font-weight:800;line-height:1.08;
-  letter-spacing:-0.03em;margin-bottom:18px;
-}
-h1 em{
-  font-style:normal;
-  background:linear-gradient(135deg,var(--purple) 0%,var(--cyan) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.hero-sub{
-  font-size:1rem;color:var(--muted);
-  max-width:480px;margin-bottom:28px;line-height:1.75;
-}
+h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,8vw,3.8rem);font-weight:800;line-height:1.08;letter-spacing:-0.03em;margin-bottom:18px;}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--purple) 0%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:480px;margin-bottom:28px;line-height:1.75;}
 .hero-sub strong{color:var(--text);}
-
 .hero-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;}
-
-.btn-primary{
-  background:linear-gradient(135deg,var(--purple),var(--blue));
-  color:#fff;font-family:'Syne',sans-serif;
-  font-weight:700;font-size:0.92rem;
-  padding:14px 28px;border-radius:50px;
-  text-decoration:none;border:none;cursor:pointer;
-  box-shadow:0 0 28px var(--glow);
-  transition:all .3s;display:inline-block;white-space:nowrap;
-}
+.btn-primary{background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:0.92rem;padding:14px 28px;border-radius:50px;text-decoration:none;border:none;cursor:pointer;box-shadow:0 0 28px var(--glow);transition:all .3s;display:inline-block;white-space:nowrap;}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 36px var(--glow);}
-.btn-ghost{
-  background:transparent;color:var(--text);
-  font-family:'Syne',sans-serif;font-weight:600;font-size:0.92rem;
-  padding:14px 24px;border-radius:50px;
-  text-decoration:none;border:1px solid rgba(255,255,255,0.12);
-  cursor:pointer;transition:all .3s;display:inline-block;white-space:nowrap;
-}
+.btn-ghost{background:transparent;color:var(--text);font-family:'Syne',sans-serif;font-weight:600;font-size:0.92rem;padding:14px 24px;border-radius:50px;text-decoration:none;border:1px solid rgba(255,255,255,0.12);cursor:pointer;transition:all .3s;display:inline-block;white-space:nowrap;}
 .btn-ghost:hover{border-color:var(--purple);color:var(--accent);}
+.hero-trust{display:flex;flex-direction:column;gap:10px;}
+@media(min-width:500px){.hero-trust{flex-direction:row;flex-wrap:wrap;gap:16px;}}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:0.8rem;color:var(--muted);}
+.trust-icon{width:18px;height:18px;border-radius:50%;background:rgba(61,255,160,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 
-.hero-trust{
-  display:flex;flex-direction:column;gap:10px;
-}
-@media(min-width:500px){
-  .hero-trust{flex-direction:row;flex-wrap:wrap;gap:16px;}
-}
-.trust-item{
-  display:flex;align-items:center;gap:7px;
-  font-size:0.8rem;color:var(--muted);
-}
-.trust-icon{
-  width:18px;height:18px;border-radius:50%;
-  background:rgba(61,255,160,0.12);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-}
-
-/* HERO MOCK CARDS */
+/* HERO CARDS */
 .hero-visual{display:flex;flex-direction:column;gap:12px;}
-.mock-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:16px;padding:18px 20px;
-  transition:border-color .3s;
-}
+.mock-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px;transition:border-color .3s;}
 .mock-card:hover{border-color:var(--border-h);}
-.mock-card-header{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:14px;flex-wrap:wrap;gap:8px;
-}
-.mock-label{
-  font-family:'Syne',sans-serif;font-size:0.68rem;
-  font-weight:700;letter-spacing:0.07em;text-transform:uppercase;
-  color:var(--muted);
-}
-.mock-badge-green{
-  background:rgba(61,255,160,0.12);color:var(--green);
-  font-family:'Syne',sans-serif;font-size:0.65rem;font-weight:700;
-  padding:3px 10px;border-radius:50px;letter-spacing:0.05em;text-transform:uppercase;
-}
-.mock-badge-purple{
-  background:rgba(124,111,247,0.12);color:var(--purple);
-  font-family:'Syne',sans-serif;font-size:0.65rem;font-weight:700;
-  padding:3px 10px;border-radius:50px;letter-spacing:0.05em;text-transform:uppercase;
-}
-.mock-score{
-  font-family:'Syne',sans-serif;font-weight:800;
-  font-size:clamp(2rem,6vw,2.6rem);letter-spacing:-0.04em;
-  background:linear-gradient(135deg,var(--green),var(--cyan));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.mock-score-sub{font-size:0.8rem;color:var(--muted);margin-top:2px;}
-.mock-bar-row{
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:8px;
-}
+.mock-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+.mock-label{font-family:'Syne',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--muted);}
+.mock-badge-green{background:rgba(61,255,160,0.12);color:var(--green);font-family:'Syne',sans-serif;font-size:0.65rem;font-weight:700;padding:3px 10px;border-radius:50px;letter-spacing:0.05em;text-transform:uppercase;}
+.mock-badge-blue{background:rgba(79,138,255,0.12);color:var(--blue);font-family:'Syne',sans-serif;font-size:0.65rem;font-weight:700;padding:3px 10px;border-radius:50px;letter-spacing:0.05em;text-transform:uppercase;}
+.mock-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
 .mock-bar-row:last-child{margin-bottom:0;}
 .mock-bar-lbl{font-size:0.75rem;color:var(--muted);flex:0 0 90px;}
 .mock-bar-track{flex:1;height:5px;background:rgba(255,255,255,0.05);border-radius:5px;overflow:hidden;}
 .mock-bar-fill{height:100%;border-radius:5px;}
 .mock-bar-val{font-family:'Syne',sans-serif;font-weight:700;font-size:0.75rem;flex:0 0 30px;text-align:right;}
-.c-purple{color:var(--purple);} .c-cyan{color:var(--cyan);} .c-blue{color:var(--blue);} .c-orange{color:var(--orange);}
+.c-purple{color:var(--purple);}.c-cyan{color:var(--cyan);}.c-blue{color:var(--blue);}.c-orange{color:var(--orange);}
 .fill-purple{background:linear-gradient(90deg,var(--purple),var(--blue));}
 .fill-cyan{background:linear-gradient(90deg,var(--cyan),var(--green));}
 .fill-blue{background:linear-gradient(90deg,var(--blue),var(--purple));}
 .fill-orange{background:linear-gradient(90deg,var(--orange),#ff6b6b);}
-.savings-row{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05);
-  font-size:0.84rem;
-}
-.savings-row:last-child{border-bottom:none;padding-bottom:0;}
-.savings-cut{color:var(--green);font-family:'Syne',sans-serif;font-weight:700;}
+.mock-home-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.82rem;}
+.mock-home-row:last-child{border-bottom:none;}
+.mock-home-val{font-family:'Syne',sans-serif;font-weight:700;color:var(--blue);}
 
-/* ═══════════════════════════════════════
-   SECTION HEADERS
-═══════════════════════════════════════ */
-.section-label{
-  font-family:'Syne',sans-serif;font-size:0.7rem;
-  font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--purple);margin-bottom:10px;
-}
-h2{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(1.7rem,5vw,2.6rem);
-  font-weight:800;letter-spacing:-0.03em;
-  line-height:1.12;margin-bottom:14px;
-}
-h2 em{
-  font-style:normal;
-  background:linear-gradient(135deg,var(--purple),var(--cyan));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.section-sub{
-  color:var(--muted);font-size:1rem;max-width:560px;
-  margin-bottom:44px;line-height:1.75;
-}
+/* SECTION HEADERS */
+.section-label{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--purple);margin-bottom:10px;}
+h2{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,5vw,2.6rem);font-weight:800;letter-spacing:-0.03em;line-height:1.12;margin-bottom:14px;}
+h2 em{font-style:normal;background:linear-gradient(135deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.section-sub{color:var(--muted);font-size:1rem;max-width:560px;margin-bottom:44px;line-height:1.75;}
 
-/* ═══════════════════════════════════════
-   HOW IT WORKS
-═══════════════════════════════════════ */
-#how{padding:80px 20px;}
-@media(min-width:768px){#how{padding:100px 40px;}}
+/* PROMPT LIBRARY OVERVIEW */
+#prompts-overview{padding:80px 20px;background:var(--bg2);}
+@media(min-width:768px){#prompts-overview{padding:100px 40px;}}
+.prompt-cards-grid{display:grid;grid-template-columns:1fr;gap:18px;max-width:1100px;margin:0 auto;}
+@media(min-width:700px){.prompt-cards-grid{grid-template-columns:repeat(2,1fr);}}
 
-.steps-wrap{max-width:760px;margin:0 auto;}
-.step{
-  display:flex;gap:20px;align-items:flex-start;
-  padding:24px 0;
-  border-bottom:1px solid var(--border);
+.prompt-overview-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:28px 26px 24px;
+  transition:all .35s;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
 }
-.step:last-child{border-bottom:none;}
-.step-num{
-  flex-shrink:0;width:48px;height:48px;border-radius:50%;
-  background:linear-gradient(135deg,var(--purple),var(--blue));
+.prompt-overview-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  opacity:1;transition:opacity .3s;
+}
+.prompt-overview-card.card-green::before{background:linear-gradient(90deg,var(--green),var(--cyan));}
+.prompt-overview-card.card-blue::before{background:linear-gradient(90deg,var(--blue),var(--purple));}
+.prompt-overview-card:hover{border-color:var(--border-h);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.2);}
+.poc-icon{font-size:2rem;margin-bottom:16px;}
+.poc-num{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px;}
+.card-green .poc-num{color:var(--green);}
+.card-blue .poc-num{color:var(--blue);}
+.poc-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.15rem;margin-bottom:10px;letter-spacing:-0.02em;}
+.poc-desc{color:var(--muted);font-size:0.9rem;line-height:1.7;margin-bottom:20px;flex:1;}
+.poc-inputs{display:flex;flex-direction:column;gap:6px;margin-bottom:20px;}
+.poc-input-row{display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--muted);}
+.poc-input-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.card-green .poc-input-dot{background:var(--green);}
+.card-blue .poc-input-dot{background:var(--blue);}
+.poc-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:0.84rem;
+  padding:11px 20px;border-radius:50px;text-decoration:none;
+  transition:all .3s;cursor:pointer;border:none;
+  align-self:flex-start;
+}
+.card-green .poc-cta{background:rgba(61,255,160,0.1);color:var(--green);border:1px solid rgba(61,255,160,0.25);}
+.card-green .poc-cta:hover{background:rgba(61,255,160,0.18);box-shadow:0 4px 20px rgba(61,255,160,0.15);}
+.card-blue .poc-cta{background:rgba(79,138,255,0.1);color:var(--blue);border:1px solid rgba(79,138,255,0.25);}
+.card-blue .poc-cta:hover{background:rgba(79,138,255,0.18);box-shadow:0 4px 20px rgba(79,138,255,0.15);}
+
+/* PROMPT SECTIONS */
+.prompt-section{padding:80px 20px;}
+@media(min-width:768px){.prompt-section{padding:100px 40px;}}
+.prompt-section-alt{background:var(--bg2);}
+
+.prompt-section-inner{max-width:1100px;margin:0 auto;}
+.prompt-section-header{display:grid;grid-template-columns:1fr;gap:40px;margin-bottom:56px;}
+@media(min-width:900px){.prompt-section-header{grid-template-columns:1fr 1fr;gap:60px;align-items:start;}}
+
+.psh-left{}
+.psh-right{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;padding:24px;
+}
+.psh-steps-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;}
+.psh-step{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);}
+.psh-step:last-child{border-bottom:none;padding-bottom:0;}
+.psh-step-num{
+  flex-shrink:0;width:32px;height:32px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;
-  box-shadow:0 0 20px var(--glow);
+  font-family:'Syne',sans-serif;font-weight:800;font-size:0.85rem;
 }
-.step-title{
-  font-family:'Syne',sans-serif;font-weight:700;
-  font-size:1rem;margin-bottom:6px;
-}
-.step-desc{color:var(--muted);font-size:0.9rem;line-height:1.65;}
-.platform-pills{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
-.pill{
-  display:flex;align-items:center;gap:6px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:50px;padding:4px 12px;
-  font-size:0.76rem;font-weight:600;color:var(--text);
-}
+.step-green{background:rgba(61,255,160,0.12);color:var(--green);}
+.step-blue{background:rgba(79,138,255,0.12);color:var(--blue);}
+.psh-step-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.88rem;margin-bottom:4px;}
+.psh-step-desc{color:var(--muted);font-size:0.82rem;line-height:1.6;}
+.psh-platform-pills{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
+.pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:50px;padding:4px 12px;font-size:0.76rem;font-weight:600;color:var(--text);}
 .pill-dot{width:6px;height:6px;border-radius:50%;}
 
-/* ═══════════════════════════════════════
-   PROMPT SECTION
-═══════════════════════════════════════ */
-#prompt{padding:80px 20px;background:var(--bg2);}
-@media(min-width:768px){#prompt{padding:100px 40px;}}
-
+/* PROMPT BLOCK */
 .prompt-wrap{max-width:860px;margin:0 auto;}
-.prompt-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;}
-.prompt-time{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(61,255,160,0.09);border:1px solid rgba(61,255,160,0.2);
-  border-radius:50px;padding:5px 13px;
-  font-size:0.75rem;font-weight:600;color:var(--green);
-  font-family:'Syne',sans-serif;letter-spacing:0.04em;
-}
-.prompt-compat{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(124,111,247,0.08);border:1px solid rgba(124,111,247,0.22);
-  border-radius:50px;padding:5px 13px;
-  font-size:0.75rem;font-weight:600;color:var(--accent);
-  font-family:'Syne',sans-serif;letter-spacing:0.03em;
-}
-.prompt-block{
-  background:#090c14;
-  border:1px solid rgba(124,111,247,0.22);
-  border-radius:18px;overflow:hidden;
-  box-shadow:0 0 60px rgba(124,111,247,0.07);
-}
-.prompt-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:12px 18px;
-  background:rgba(124,111,247,0.06);
-  border-bottom:1px solid rgba(124,111,247,0.1);
-  flex-wrap:wrap;gap:8px;
-}
+.prompt-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px;}
+.prompt-time{display:inline-flex;align-items:center;gap:6px;background:rgba(61,255,160,0.09);border:1px solid rgba(61,255,160,0.2);border-radius:50px;padding:5px 13px;font-size:0.75rem;font-weight:600;color:var(--green);font-family:'Syne',sans-serif;letter-spacing:0.04em;}
+.prompt-compat{display:inline-flex;align-items:center;gap:6px;background:rgba(124,111,247,0.08);border:1px solid rgba(124,111,247,0.22);border-radius:50px;padding:5px 13px;font-size:0.75rem;font-weight:600;color:var(--accent);font-family:'Syne',sans-serif;letter-spacing:0.03em;}
+.prompt-block{background:#090c14;border:1px solid rgba(124,111,247,0.22);border-radius:18px;overflow:hidden;box-shadow:0 0 60px rgba(124,111,247,0.07);}
+.prompt-header{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(124,111,247,0.06);border-bottom:1px solid rgba(124,111,247,0.1);flex-wrap:wrap;gap:8px;}
 .prompt-dots{display:flex;gap:6px;}
 .prompt-dots span{width:10px;height:10px;border-radius:50%;}
 .prompt-dots span:nth-child(1){background:#ff5f57;}
 .prompt-dots span:nth-child(2){background:#febc2e;}
 .prompt-dots span:nth-child(3){background:#28c840;}
-.prompt-filename{
-  font-family:'DM Mono',monospace;font-size:0.72rem;
-  color:var(--muted);
-}
-.copy-btn{
-  background:linear-gradient(135deg,var(--purple),var(--blue));
-  color:#fff;border:none;cursor:pointer;
-  font-family:'Syne',sans-serif;font-weight:700;
-  font-size:0.78rem;padding:7px 16px;border-radius:50px;
-  transition:all .3s;display:flex;align-items:center;gap:6px;
-  white-space:nowrap;
-}
+.prompt-filename{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--muted);}
+.copy-btn{background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;border:none;cursor:pointer;font-family:'Syne',sans-serif;font-weight:700;font-size:0.78rem;padding:7px 16px;border-radius:50px;transition:all .3s;display:flex;align-items:center;gap:6px;white-space:nowrap;}
 .copy-btn:hover{transform:scale(1.04);box-shadow:0 4px 18px var(--glow);}
 .copy-btn.copied{background:linear-gradient(135deg,#28c840,#38d9f5);}
-.prompt-body{
-  padding:20px;
-  max-height:420px;overflow-y:auto;
-  font-family:'DM Mono','Courier New',monospace;
-  font-size:0.78rem;line-height:1.85;
-  color:#bfc8dc;white-space:pre-wrap;word-break:break-word;
-}
+.prompt-body{padding:20px;max-height:420px;overflow-y:auto;font-family:'DM Mono','Courier New',monospace;font-size:0.78rem;line-height:1.85;color:#bfc8dc;white-space:pre-wrap;word-break:break-word;}
 @media(min-width:768px){.prompt-body{padding:24px 28px;font-size:0.83rem;max-height:500px;}}
 .prompt-body::-webkit-scrollbar{width:4px;}
 .prompt-body::-webkit-scrollbar-track{background:transparent;}
 .prompt-body::-webkit-scrollbar-thumb{background:rgba(124,111,247,0.25);border-radius:3px;}
-.prompt-footer{
-  padding:12px 18px;
-  background:rgba(124,111,247,0.04);
-  border-top:1px solid rgba(124,111,247,0.1);
-  display:flex;align-items:center;justify-content:space-between;
-  font-size:0.75rem;color:var(--muted);flex-wrap:wrap;gap:10px;
-}
-.copy-btn-lg{
-  background:linear-gradient(135deg,var(--purple),var(--blue));
-  color:#fff;border:none;cursor:pointer;
-  font-family:'Syne',sans-serif;font-weight:700;
-  font-size:0.84rem;padding:10px 22px;border-radius:50px;
-  transition:all .3s;display:flex;align-items:center;gap:8px;white-space:nowrap;
-}
+.prompt-footer{padding:12px 18px;background:rgba(124,111,247,0.04);border-top:1px solid rgba(124,111,247,0.1);display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--muted);flex-wrap:wrap;gap:10px;}
+.copy-btn-lg{background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;border:none;cursor:pointer;font-family:'Syne',sans-serif;font-weight:700;font-size:0.84rem;padding:10px 22px;border-radius:50px;transition:all .3s;display:flex;align-items:center;gap:8px;white-space:nowrap;}
 .copy-btn-lg:hover{transform:scale(1.04);box-shadow:0 4px 18px var(--glow);}
 .copy-btn-lg.copied{background:linear-gradient(135deg,#28c840,#38d9f5);}
 
-/* ═══════════════════════════════════════
-   WHY DIFFERENT
-═══════════════════════════════════════ */
-#why{padding:80px 20px;}
-@media(min-width:768px){#why{padding:100px 40px;}}
-
-.why-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:14px;max-width:1100px;margin:0 auto;
-}
-@media(min-width:560px){.why-grid{grid-template-columns:repeat(2,1fr);}}
-@media(min-width:900px){.why-grid{grid-template-columns:repeat(4,1fr);}}
-
-.why-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:18px;padding:24px 22px;
-  transition:all .35s;position:relative;overflow:hidden;
-}
-.why-card::after{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--purple),var(--cyan));
-  opacity:0;transition:opacity .35s;
-}
-.why-card:hover{border-color:var(--border-h);transform:translateY(-3px);}
-.why-card:hover::after{opacity:1;}
-.why-icon{font-size:1.6rem;margin-bottom:14px;}
-.why-title{
-  font-family:'Syne',sans-serif;font-weight:700;
-  font-size:0.95rem;margin-bottom:8px;
-}
-.why-desc{color:var(--muted);font-size:0.86rem;line-height:1.65;}
-
-/* ═══════════════════════════════════════
-   OUTPUT PREVIEW
-═══════════════════════════════════════ */
-#output{padding:80px 20px;background:var(--bg2);}
+/* OUTPUT PREVIEW */
+#output{padding:80px 20px;}
 @media(min-width:768px){#output{padding:100px 40px;}}
-
-.output-grid{
-  display:grid;grid-template-columns:1fr;
-  gap:14px;max-width:1100px;margin:0 auto;
-}
+.output-grid{display:grid;grid-template-columns:1fr;gap:14px;max-width:1100px;margin:0 auto;}
 @media(min-width:560px){.output-grid{grid-template-columns:repeat(2,1fr);}}
-@media(min-width:900px){.output-grid{grid-template-columns:repeat(4,1fr);}}
-
-.output-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:18px;padding:22px;transition:all .35s;
-}
+@media(min-width:900px){.output-grid{grid-template-columns:repeat(3,1fr);}}
+.output-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;transition:all .35s;}
 .output-card:hover{border-color:var(--border-h);transform:translateY(-3px);}
-.output-tag{
-  display:inline-block;font-size:0.65rem;font-weight:700;
-  font-family:'Syne',sans-serif;letter-spacing:0.09em;text-transform:uppercase;
-  padding:3px 11px;border-radius:50px;margin-bottom:14px;
-}
+.output-tag{display:inline-block;font-size:0.65rem;font-weight:700;font-family:'Syne',sans-serif;letter-spacing:0.09em;text-transform:uppercase;padding:3px 11px;border-radius:50px;margin-bottom:14px;}
 .tag-purple{background:rgba(124,111,247,0.13);color:var(--purple);}
 .tag-blue{background:rgba(79,138,255,0.13);color:var(--blue);}
 .tag-cyan{background:rgba(56,217,245,0.13);color:var(--cyan);}
 .tag-green{background:rgba(61,255,160,0.13);color:var(--green);}
-.output-title{
-  font-family:'Syne',sans-serif;font-weight:700;
-  font-size:0.94rem;margin-bottom:14px;
-}
-.output-item{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);
-  font-size:0.83rem;gap:8px;
-}
+.tag-orange{background:rgba(255,144,80,0.13);color:var(--orange);}
+.output-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.94rem;margin-bottom:14px;}
+.output-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.83rem;gap:8px;}
 .output-item:last-child{border-bottom:none;}
 .output-item span:first-child{flex:1;min-width:0;}
 .output-val{font-family:'Syne',sans-serif;font-weight:700;white-space:nowrap;}
-.val-red{color:#ff6b6b;} .val-green{color:var(--green);}
-.val-yellow{color:#ffd166;} .val-blue{color:var(--blue);}
+.val-red{color:#ff6b6b;}.val-green{color:var(--green);}.val-yellow{color:#ffd166;}.val-blue{color:var(--blue);}
 
-/* ═══════════════════════════════════════
-   ABOUT
-═══════════════════════════════════════ */
-#about{padding:80px 20px;}
+/* WHY */
+#why{padding:80px 20px;background:var(--bg2);}
+@media(min-width:768px){#why{padding:100px 40px;}}
+.why-grid{display:grid;grid-template-columns:1fr;gap:14px;max-width:1100px;margin:0 auto;}
+@media(min-width:560px){.why-grid{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:900px){.why-grid{grid-template-columns:repeat(3,1fr);}}
+.why-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px 22px;transition:all .35s;position:relative;overflow:hidden;}
+.why-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--cyan));opacity:0;transition:opacity .35s;}
+.why-card:hover{border-color:var(--border-h);transform:translateY(-3px);}
+.why-card:hover::after{opacity:1;}
+.why-icon{font-size:1.6rem;margin-bottom:14px;}
+.why-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;margin-bottom:8px;}
+.why-desc{color:var(--muted);font-size:0.86rem;line-height:1.65;}
+
+/* PRIVACY SECTION */
+#privacy{padding:80px 20px;}
+@media(min-width:768px){#privacy{padding:100px 40px;}}
+.privacy-inner{max-width:1100px;margin:0 auto;}
+.privacy-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:40px;}
+@media(min-width:700px){.privacy-grid{grid-template-columns:1fr 1fr;}}
+.privacy-platform-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px 24px;transition:border-color .3s;}
+.privacy-platform-card:hover{border-color:var(--border-h);}
+.privacy-platform-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.privacy-platform-logo{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.logo-gpt{background:rgba(16,163,127,0.15);}
+.logo-claude{background:rgba(201,100,66,0.15);}
+.privacy-platform-name{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;}
+.privacy-plan-tag{display:inline-block;font-size:0.65rem;font-weight:700;font-family:'Syne',sans-serif;letter-spacing:0.07em;text-transform:uppercase;padding:2px 9px;border-radius:50px;margin-left:8px;}
+.plan-free{background:rgba(255,144,80,0.12);color:var(--orange);}
+.plan-paid{background:rgba(255,144,80,0.12);color:var(--orange);}
+.plan-safe{background:rgba(61,255,160,0.10);color:var(--green);}
+.privacy-steps-title{font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.privacy-step{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;}
+.privacy-step:last-child{margin-bottom:0;}
+.privacy-step-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(124,111,247,0.12);color:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:0.72rem;margin-top:1px;}
+.privacy-step-text{color:var(--muted);font-size:0.85rem;line-height:1.6;}
+.privacy-step-text strong{color:var(--text);}
+
+.privacy-best-practices{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px 26px;}
+.privacy-bp-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.privacy-bp-icon{font-size:1.4rem;}
+.privacy-bp-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;}
+.privacy-bp-grid{display:grid;grid-template-columns:1fr;gap:12px;}
+@media(min-width:600px){.privacy-bp-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:900px){.privacy-bp-grid{grid-template-columns:repeat(3,1fr);}}
+.privacy-bp-item{display:flex;gap:10px;align-items:flex-start;}
+.privacy-bp-check{width:20px;height:20px;border-radius:50%;background:rgba(61,255,160,0.12);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;margin-top:2px;}
+.privacy-bp-text{font-size:0.85rem;color:var(--muted);line-height:1.55;}
+.privacy-bp-text strong{color:var(--text);}
+
+.privacy-disclaimer{margin-top:24px;padding:16px 20px;background:rgba(124,111,247,0.05);border:1px solid rgba(124,111,247,0.12);border-radius:14px;font-size:0.82rem;color:var(--muted);line-height:1.65;}
+.privacy-disclaimer strong{color:var(--text);}
+
+/* ABOUT */
+#about{padding:80px 20px;background:var(--bg2);}
 @media(min-width:768px){#about{padding:100px 40px;}}
-
-.about-inner{
-  max-width:900px;margin:0 auto;
-  display:flex;flex-direction:column;gap:36px;
-  align-items:center;
-}
-@media(min-width:768px){
-  .about-inner{
-    display:grid;grid-template-columns:220px 1fr;
-    gap:56px;align-items:start;
-  }
-}
-.about-avatar-wrap{
-  width:100%;max-width:220px;
-  flex-shrink:0;
-}
-.about-avatar{
-  width:100%;border-radius:18px;
-  border:1px solid rgba(124,111,247,0.25);
-  box-shadow:0 0 50px rgba(124,111,247,0.18),0 20px 50px rgba(0,0,0,0.35);
-  overflow:hidden;display:block;
-}
+.about-inner{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:36px;align-items:center;}
+@media(min-width:768px){.about-inner{display:grid;grid-template-columns:220px 1fr;gap:56px;align-items:start;}}
+.about-avatar-wrap{width:100%;max-width:220px;flex-shrink:0;}
+.about-avatar{width:100%;border-radius:18px;border:1px solid rgba(124,111,247,0.25);box-shadow:0 0 50px rgba(124,111,247,0.18),0 20px 50px rgba(0,0,0,0.35);overflow:hidden;display:block;}
 .about-avatar img{width:100%;height:auto;display:block;}
 .creds{display:flex;flex-direction:column;gap:8px;margin-top:22px;}
-.cred{
-  display:flex;align-items:flex-start;gap:10px;
-  font-size:0.86rem;color:var(--muted);line-height:1.5;
-}
-.cred-check{
-  width:18px;height:18px;border-radius:50%;flex-shrink:0;margin-top:1px;
-  background:rgba(61,255,160,0.12);color:var(--green);
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.65rem;font-weight:700;
-}
+.cred{display:flex;align-items:flex-start;gap:10px;font-size:0.86rem;color:var(--muted);line-height:1.5;}
+.cred-check{width:18px;height:18px;border-radius:50%;flex-shrink:0;margin-top:1px;background:rgba(61,255,160,0.12);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;}
 
-/* ═══════════════════════════════════════
-   SOCIAL
-═══════════════════════════════════════ */
-#social{padding:80px 20px;background:var(--bg2);text-align:center;}
+/* SOCIAL */
+#social{padding:80px 20px;text-align:center;}
 @media(min-width:768px){#social{padding:100px 40px;}}
-
-.social-links{
-  display:flex;gap:12px;justify-content:center;
-  flex-wrap:wrap;margin-top:36px;
-}
-.social-link{
-  display:flex;align-items:center;gap:10px;
-  background:var(--card);border:1px solid var(--border);
-  border-radius:14px;padding:12px 20px;
-  text-decoration:none;color:var(--text);
-  font-weight:600;font-size:0.88rem;
-  transition:all .3s;white-space:nowrap;
-}
+.social-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:36px;}
+.social-link{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 20px;text-decoration:none;color:var(--text);font-weight:600;font-size:0.88rem;transition:all .3s;white-space:nowrap;}
 .social-link:hover{border-color:var(--border-h);transform:translateY(-2px);}
 .social-icon{width:22px;height:22px;border-radius:5px;flex-shrink:0;}
 
-/* ═══════════════════════════════════════
-   EMAIL
-═══════════════════════════════════════ */
-#email{padding:80px 20px;}
+/* EMAIL */
+#email{padding:80px 20px;background:var(--bg2);}
 @media(min-width:768px){#email{padding:100px 40px;}}
-
-.email-inner{
-  max-width:560px;margin:0 auto;text-align:center;
-  background:var(--card);border:1px solid var(--border);
-  border-radius:24px;padding:40px 28px;
-  position:relative;overflow:hidden;
-}
+.email-inner{max-width:560px;margin:0 auto;text-align:center;background:var(--card);border:1px solid var(--border);border-radius:24px;padding:40px 28px;position:relative;overflow:hidden;}
 @media(min-width:560px){.email-inner{padding:52px 44px;}}
-.email-inner::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--purple),var(--cyan),var(--blue));
-}
-.email-form{
-  display:flex;gap:10px;margin-top:24px;
-  flex-direction:column;
-}
+.email-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--cyan),var(--blue));}
+.email-form{display:flex;gap:10px;margin-top:24px;flex-direction:column;}
 @media(min-width:480px){.email-form{flex-direction:row;flex-wrap:wrap;justify-content:center;}}
-.email-input{
-  flex:1;min-width:0;width:100%;
-  background:rgba(255,255,255,0.04);
-  border:1px solid var(--border);border-radius:50px;
-  padding:13px 20px;color:var(--text);font-size:0.9rem;
-  font-family:'DM Sans',sans-serif;
-  transition:border-color .3s;outline:none;
-}
+.email-input{flex:1;min-width:0;width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:50px;padding:13px 20px;color:var(--text);font-size:0.9rem;font-family:'DM Sans',sans-serif;transition:border-color .3s;outline:none;}
 @media(min-width:480px){.email-input{min-width:200px;width:auto;}}
 .email-input::placeholder{color:var(--muted);}
 .email-input:focus{border-color:var(--purple);}
-.email-submit{
-  background:linear-gradient(135deg,var(--purple),var(--blue));
-  color:#fff;font-family:'Syne',sans-serif;
-  font-weight:700;font-size:0.9rem;
-  padding:13px 26px;border-radius:50px;
-  border:none;cursor:pointer;
-  box-shadow:0 0 18px var(--glow);transition:all .3s;white-space:nowrap;
-  width:100%;
-}
+.email-submit{background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;padding:13px 26px;border-radius:50px;border:none;cursor:pointer;box-shadow:0 0 18px var(--glow);transition:all .3s;white-space:nowrap;width:100%;}
 @media(min-width:480px){.email-submit{width:auto;}}
 .email-submit:hover{transform:translateY(-1px);box-shadow:0 6px 28px var(--glow);}
 
-/* ═══════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════ */
-footer{
-  padding:24px 20px;text-align:center;
-  border-top:1px solid var(--border);
-  color:var(--muted);font-size:0.8rem;
-  position:relative;z-index:1;
-}
+footer{padding:24px 20px;text-align:center;border-top:1px solid var(--border);color:var(--muted);font-size:0.8rem;position:relative;z-index:1;}
 
-/* ═══════════════════════════════════════
-   ANIMATIONS
-═══════════════════════════════════════ */
-.fade-in{
-  opacity:0;transform:translateY(18px);
-  transition:opacity .6s ease,transform .6s ease;
-}
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
 </style>
 </head>
@@ -611,21 +334,25 @@ footer{
 <nav>
   <a href="#" class="logo">The AI Don</a>
   <ul class="nav-links">
-    <li><a href="#how">How It Works</a></li>
-    <li><a href="#prompt">Get Prompt</a></li>
+    <li><a href="#prompts-overview">Free Prompts</a></li>
+    <li><a href="#prompt1">Spending</a></li>
+    <li><a href="#prompt2">Homebuying</a></li>
+    <li><a href="#privacy">Data Privacy</a></li>
     <li><a href="#about">About</a></li>
   </ul>
   <div class="nav-right">
-    <a href="#prompt" class="nav-cta">Get the Prompt →</a>
+    <a href="#prompts-overview" class="nav-cta">Get Free Prompts →</a>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#how" onclick="toggleMenu()">How It Works</a>
-  <a href="#prompt" onclick="toggleMenu()">Get the Prompt</a>
-  <a href="#why" onclick="toggleMenu()">Why It's Different</a>
+  <a href="#prompts-overview" onclick="toggleMenu()">Free Prompts</a>
+  <a href="#prompt1" onclick="toggleMenu()">Spending Analyzer</a>
+  <a href="#prompt2" onclick="toggleMenu()">Homebuying Prompt</a>
+  <a href="#privacy" onclick="toggleMenu()">Data Privacy</a>
+  <a href="#why" onclick="toggleMenu()">Why The AI Don</a>
   <a href="#about" onclick="toggleMenu()">About</a>
   <a href="#social" onclick="toggleMenu()">Social</a>
 </div>
@@ -634,17 +361,17 @@ footer{
 <section id="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-badge"><span class="badge-dot"></span>Free · No Signup · Works Instantly</div>
-      <h1>Upload your credit card data. Let AI <em>expose your spending.</em></h1>
-      <p class="hero-sub"><strong>Built by a CPA.</strong> Powered by ChatGPT &amp; Claude. Paste your transactions and get a full financial breakdown in seconds.</p>
+      <div class="hero-badge"><span class="badge-dot"></span>Free · No Signup · Copy &amp; Paste Instantly</div>
+      <h1>Copy. Paste. <em>Simplify your finances</em> with AI.</h1>
+      <p class="hero-sub"><strong>Built by a CPA with 13+ years of experience.</strong> Free prompts for ChatGPT &amp; Claude that turn AI into your personal finance assistant — no app, no account, no fluff.</p>
       <div class="hero-btns">
-        <a href="#prompt" class="btn-primary">Get the Prompt →</a>
-        <a href="#how" class="btn-ghost">How It Works</a>
+        <a href="#prompts-overview" class="btn-primary">Get the Free Prompts →</a>
+        <a href="#why" class="btn-ghost">Why The AI Don</a>
       </div>
       <div class="hero-trust">
         <div class="trust-item">
           <div class="trust-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#3dffa0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          CPA with 13+ years experience
+          Free to use
         </div>
         <div class="trust-item">
           <div class="trust-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#3dffa0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -652,95 +379,140 @@ footer{
         </div>
         <div class="trust-item">
           <div class="trust-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#3dffa0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          Takes 30 seconds to set up
+          CPA-built, real-world tested
         </div>
       </div>
     </div>
     <div class="hero-visual">
       <div class="mock-card fade-in">
         <div class="mock-card-header">
-          <span class="mock-label">Financial Health Score</span>
-          <span class="mock-badge-green">Live Analysis</span>
+          <span class="mock-label">Prompt #1 — Spending Breakdown</span>
+          <span class="mock-badge-green">Credit Cards</span>
         </div>
-        <div class="mock-score">74<span style="font-size:1.2rem;opacity:0.45">/100</span></div>
-        <div class="mock-score-sub">Good — 3 areas to improve</div>
-        <div style="margin-top:16px;">
-          <div class="mock-bar-row"><span class="mock-bar-lbl">Subscriptions</span><div class="mock-bar-track"><div class="mock-bar-fill fill-purple" style="width:68%"></div></div><span class="mock-bar-val c-purple">68</span></div>
-          <div class="mock-bar-row"><span class="mock-bar-lbl">Dining ratio</span><div class="mock-bar-track"><div class="mock-bar-fill fill-orange" style="width:54%"></div></div><span class="mock-bar-val c-orange">54</span></div>
-          <div class="mock-bar-row"><span class="mock-bar-lbl">Essentials</span><div class="mock-bar-track"><div class="mock-bar-fill fill-cyan" style="width:88%"></div></div><span class="mock-bar-val c-cyan">88</span></div>
-          <div class="mock-bar-row"><span class="mock-bar-lbl">Consistency</span><div class="mock-bar-track"><div class="mock-bar-fill fill-blue" style="width:76%"></div></div><span class="mock-bar-val c-blue">76</span></div>
+        <div class="mock-bar-row"><span class="mock-bar-lbl">Food &amp; Dining</span><div class="mock-bar-track"><div class="mock-bar-fill fill-orange" style="width:74%"></div></div><span class="mock-bar-val c-orange">$842</span></div>
+        <div class="mock-bar-row"><span class="mock-bar-lbl">Subscriptions</span><div class="mock-bar-track"><div class="mock-bar-fill fill-purple" style="width:54%"></div></div><span class="mock-bar-val c-purple">$318</span></div>
+        <div class="mock-bar-row"><span class="mock-bar-lbl">Shopping</span><div class="mock-bar-track"><div class="mock-bar-fill fill-blue" style="width:48%"></div></div><span class="mock-bar-val c-blue">$524</span></div>
+        <div class="mock-bar-row"><span class="mock-bar-lbl">Health</span><div class="mock-bar-track"><div class="mock-bar-fill fill-cyan" style="width:28%"></div></div><span class="mock-bar-val c-cyan">$185</span></div>
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:0.8rem;color:var(--muted);">Potential monthly savings</span>
+          <span style="font-family:'Syne',sans-serif;font-weight:800;color:var(--green);font-size:1rem;">+$467</span>
         </div>
       </div>
       <div class="mock-card fade-in" style="transition-delay:0.12s">
         <div class="mock-card-header">
-          <span class="mock-label">Savings Opportunities</span>
-          <span class="mock-badge-purple">5 Found</span>
+          <span class="mock-label">Prompt #2 — True Cost of Homeownership</span>
+          <span class="mock-badge-blue">Zillow / Redfin</span>
         </div>
-        <div class="savings-row"><span>Cancel duplicate streaming</span><span class="savings-cut">+$42/mo</span></div>
-        <div class="savings-row"><span>Cut dining by 2x/week</span><span class="savings-cut">+$120/mo</span></div>
-        <div class="savings-row"><span>Pause unused subscriptions</span><span class="savings-cut">+$38/mo</span></div>
-        <div class="savings-row" style="padding-bottom:0;border-bottom:none;"><span style="font-weight:600;color:var(--text)">Total potential savings</span><span class="savings-cut" style="font-size:1rem">+$265/mo</span></div>
+        <div class="mock-home-row"><span>Mortgage (P&amp;I)</span><span class="mock-home-val">$4,210</span></div>
+        <div class="mock-home-row"><span>Property taxes</span><span class="mock-home-val">$820</span></div>
+        <div class="mock-home-row"><span>Insurance + HOA</span><span class="mock-home-val">$410</span></div>
+        <div class="mock-home-row"><span>Maintenance + utilities</span><span class="mock-home-val">$580</span></div>
+        <div class="mock-home-row" style="border-bottom:none;padding-top:12px;margin-top:4px;border-top:1px solid rgba(255,255,255,0.06);">
+          <span style="font-weight:600;color:var(--text);">True monthly all-in cost</span>
+          <span style="font-family:'Syne',sans-serif;font-weight:800;color:#ff6b6b;font-size:1rem;">$6,020</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how" style="background:var(--bg2);">
+<!-- PROMPT LIBRARY OVERVIEW -->
+<section id="prompts-overview">
   <div class="container">
-    <div class="section-label">Simple process</div>
-    <h2>Three steps. <em>Real insights.</em></h2>
-    <p class="section-sub">No app to download. No account to create. Just a prompt that does the work.</p>
-    <div class="steps-wrap">
-      <div class="step fade-in">
-        <div class="step-num">1</div>
-        <div>
-          <div class="step-title">Export your credit card transactions</div>
-          <div class="step-desc">Download your transaction history as a CSV or PDF from your bank or card app. Chase, Amex, BoA, Citi — they all support this under "statements" or "download transactions."</div>
+    <div class="section-label">Free prompt library</div>
+    <h2>Two prompts. <em>Two big decisions.</em></h2>
+    <p class="section-sub">Pick the prompt that matches what you're trying to figure out. Both are free, both work with ChatGPT and Claude, and both are built by a CPA.</p>
+    <div class="prompt-cards-grid">
+
+      <div class="prompt-overview-card card-green fade-in">
+        <div class="poc-icon">💳</div>
+        <div class="poc-num">Prompt #1</div>
+        <div class="poc-title">Credit Card Spending Analyzer</div>
+        <div class="poc-desc">Paste in your credit card transactions and get a full breakdown — categories, subscriptions to cancel, top merchants, savings opportunities, and a spending health score.</div>
+        <div class="poc-inputs">
+          <div style="font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">What you need</div>
+          <div class="poc-input-row"><div class="poc-input-dot"></div>Your credit card transaction history (CSV or copy/paste)</div>
+          <div class="poc-input-row"><div class="poc-input-dot"></div>ChatGPT or Claude (free or paid)</div>
+          <div class="poc-input-row"><div class="poc-input-dot"></div>About 30 seconds of your time</div>
+        </div>
+        <a href="#prompt1" class="poc-cta">Get This Prompt →</a>
+      </div>
+
+      <div class="prompt-overview-card card-blue fade-in">
+        <div class="poc-icon">🏠</div>
+        <div class="poc-num">Prompt #2</div>
+        <div class="poc-title">Homebuying Made Easy with AI</div>
+        <div class="poc-desc">Drop in a Zillow, Redfin, or Realtor listing link plus a few inputs and get the true all-in monthly cost, loan comparisons, down payment strategy, and a no-BS reality check.</div>
+        <div class="poc-inputs">
+          <div style="font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">What you need</div>
+          <div class="poc-input-row"><div class="poc-input-dot"></div>A Zillow, Redfin, or Realtor listing link</div>
+          <div class="poc-input-row"><div class="poc-input-dot"></div>Your planned down payment % </div>
+          <div class="poc-input-row"><div class="poc-input-dot"></div>Credit score range (optional, improves output)</div>
+        </div>
+        <a href="#prompt2" class="poc-cta">Get This Prompt →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROMPT 1: SPENDING ANALYZER -->
+<section id="prompt1" class="prompt-section prompt-section-alt">
+  <div class="prompt-section-inner">
+    <div class="section-label">Prompt #1 — Credit Card Spending</div>
+    <h2>Know exactly <em>where your money goes.</em></h2>
+
+    <div class="prompt-section-header">
+      <div class="psh-left">
+        <p style="color:var(--muted);font-size:0.95rem;line-height:1.8;margin-bottom:20px;">
+          Export your credit card transactions, paste them into ChatGPT or Claude along with this prompt, and get a full financial breakdown — subscriptions to cut, top merchants, savings opportunities, and a health score — in seconds.
+        </p>
+        <div class="prompt-meta">
+          <span class="prompt-time">⚡ Takes 30 seconds to set up</span>
+          <span class="prompt-compat">✦ Works with ChatGPT &amp; Claude</span>
         </div>
       </div>
-      <div class="step fade-in">
-        <div class="step-num">2</div>
-        <div>
-          <div class="step-title">Paste the prompt into ChatGPT or Claude</div>
-          <div class="step-desc">Copy the CPA-built prompt below and open your preferred AI tool. Attach your transaction file or paste the data directly. Works on both platforms.</div>
-          <div class="platform-pills">
-            <div class="pill"><div class="pill-dot" style="background:#10a37f;"></div>ChatGPT</div>
-            <div class="pill"><div class="pill-dot" style="background:#c96442;"></div>Claude</div>
+      <div class="psh-right">
+        <div class="psh-steps-title">How to use this prompt</div>
+        <div class="psh-step">
+          <div class="psh-step-num step-green">1</div>
+          <div>
+            <div class="psh-step-title">Export your transactions</div>
+            <div class="psh-step-desc">Download your credit card history as a CSV or PDF from your bank app — Chase, Amex, BoA, Citi all support this under Statements or Download Transactions.</div>
+          </div>
+        </div>
+        <div class="psh-step">
+          <div class="psh-step-num step-green">2</div>
+          <div>
+            <div class="psh-step-title">Open ChatGPT or Claude</div>
+            <div class="psh-step-desc">Use whichever platform you prefer. Both work equally well with this prompt. No special settings needed.</div>
+            <div class="psh-platform-pills">
+              <div class="pill"><div class="pill-dot" style="background:#10a37f;"></div>ChatGPT</div>
+              <div class="pill"><div class="pill-dot" style="background:#c96442;"></div>Claude</div>
+            </div>
+          </div>
+        </div>
+        <div class="psh-step">
+          <div class="psh-step-num step-green">3</div>
+          <div>
+            <div class="psh-step-title">Copy the prompt, paste your data</div>
+            <div class="psh-step-desc">Copy the prompt below, paste it into the chat, then add your transaction data right below it. Hit send — that's it.</div>
           </div>
         </div>
       </div>
-      <div class="step fade-in">
-        <div class="step-num">3</div>
-        <div>
-          <div class="step-title">Get your full financial breakdown</div>
-          <div class="step-desc">The AI analyzes your spending across 6 dimensions — categories, subscriptions, trends, top merchants, savings opportunities, and a health score — then gives you a specific action plan.</div>
-        </div>
-      </div>
     </div>
-  </div>
-</section>
 
-<!-- PROMPT -->
-<section id="prompt">
-  <div class="container">
     <div class="prompt-wrap">
-      <div class="section-label">The CPA-built prompt</div>
-      <h2>Your financial <em>X-ray.</em></h2>
-      <div class="prompt-meta">
-        <span class="prompt-time">⚡ Takes 30 seconds to use</span>
-        <span class="prompt-compat">✦ Works with ChatGPT &amp; Claude</span>
-      </div>
       <div class="prompt-block">
         <div class="prompt-header">
           <div class="prompt-dots"><span></span><span></span><span></span></div>
-          <span class="prompt-filename">finance-analyzer-v2.prompt</span>
-          <button class="copy-btn" onclick="copyPrompt(this)">
+          <span class="prompt-filename">spending-analyzer.prompt</span>
+          <button class="copy-btn" onclick="copyPromptById('promptText1', this)">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
             Copy
           </button>
         </div>
-        <div class="prompt-body" id="promptText">You are an expert personal finance analyst. I'm going to give you my credit card transaction data for the past month (or more). 
+        <div class="prompt-body" id="promptText1">You are an expert personal finance analyst. I'm going to give you my credit card transaction data for the past month (or more).
 
 Your job is to analyze my spending and give me a CLEAR, HONEST, and ACTIONABLE financial breakdown.
 
@@ -750,14 +522,14 @@ Here's what I need you to do:
 STEP 1 — CATEGORIZE ALL SPENDING
 ─────────────────────────────────────────
 Group every transaction into categories such as:
-• Food &amp; Dining (restaurants, delivery, groceries)
-• Entertainment &amp; Streaming
-• Shopping &amp; Apparel
-• Health &amp; Wellness
+• Food & Dining (restaurants, delivery, groceries)
+• Entertainment & Streaming
+• Shopping & Apparel
+• Health & Wellness
 • Transportation
-• Subscriptions &amp; Memberships
+• Subscriptions & Memberships
 • Travel
-• Utilities &amp; Bills
+• Utilities & Bills
 • Other / Miscellaneous
 
 Show a clean table:
@@ -818,8 +590,8 @@ Make it simple. Make it specific. Make it doable.
 ─────────────────────────────────────────
 HERE IS MY TRANSACTION DATA:</div>
         <div class="prompt-footer">
-          <span>📋 Paste your transaction data at the bottom after copying</span>
-          <button class="copy-btn-lg" onclick="copyPromptLg(this)">
+          <span>📋 Paste your credit card transactions directly below the prompt before hitting send</span>
+          <button class="copy-btn-lg" onclick="copyPromptById('promptText1', this)">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
             Copy Full Prompt
           </button>
@@ -829,46 +601,235 @@ HERE IS MY TRANSACTION DATA:</div>
   </div>
 </section>
 
-<!-- WHY DIFFERENT -->
-<section id="why" style="background:var(--bg2);">
-  <div class="container">
-    <div class="section-label">Why this is different</div>
-    <h2>Not another app. <em>Real intelligence.</em></h2>
-    <p class="section-sub">Most finance tools give you bar charts. This gives you a CPA's brain working on your numbers.</p>
-    <div class="why-grid">
-      <div class="why-card fade-in">
-        <div class="why-icon">🏦</div>
-        <div class="why-title">Not Rocket Money or Mint</div>
-        <div class="why-desc">Those apps categorize and summarize. This prompt diagnoses — finding what's actually bleeding your wallet and exactly what to do this week.</div>
+<!-- PROMPT 2: HOMEBUYING -->
+<section id="prompt2" class="prompt-section">
+  <div class="prompt-section-inner">
+    <div class="section-label">Prompt #2 — Homebuying</div>
+    <h2>The real cost of a home, <em>not just the mortgage.</em></h2>
+
+    <div class="prompt-section-header">
+      <div class="psh-left">
+        <p style="color:var(--muted);font-size:0.95rem;line-height:1.8;margin-bottom:20px;">
+          Find a listing you're interested in on Zillow, Redfin, or Realtor.com. Paste the link into ChatGPT or Claude along with this prompt and a few quick inputs — and get the full picture: true all-in monthly cost, loan comparisons, down payment strategy, and a no-BS breakdown of what most buyers miss.
+        </p>
+        <div class="prompt-meta">
+          <span class="prompt-time">⚡ Works on any listing</span>
+          <span class="prompt-compat">✦ Works with ChatGPT &amp; Claude</span>
+        </div>
       </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">🎯</div>
-        <div class="why-title">Specific, not generic</div>
-        <div class="why-desc">Forget "spend less on dining." This tells you which merchants to cut, which frequency to reduce, and the exact dollar amount you'd save per month.</div>
+      <div class="psh-right">
+        <div class="psh-steps-title">How to use this prompt</div>
+        <div class="psh-step">
+          <div class="psh-step-num step-blue">1</div>
+          <div>
+            <div class="psh-step-title">Find a listing you're considering</div>
+            <div class="psh-step-desc">Grab the URL from Zillow, Redfin, Realtor.com, or any similar platform. Copy the full link — the prompt will pull the property details from it directly.</div>
+          </div>
+        </div>
+        <div class="psh-step">
+          <div class="psh-step-num step-blue">2</div>
+          <div>
+            <div class="psh-step-title">Open ChatGPT or Claude</div>
+            <div class="psh-step-desc">Use the AI tool you prefer. Both work well. Note: you'll need a paid plan (ChatGPT Plus or Claude Pro) to use the web browsing feature that reads the listing.</div>
+            <div class="psh-platform-pills">
+              <div class="pill"><div class="pill-dot" style="background:#10a37f;"></div>ChatGPT</div>
+              <div class="pill"><div class="pill-dot" style="background:#c96442;"></div>Claude</div>
+            </div>
+          </div>
+        </div>
+        <div class="psh-step">
+          <div class="psh-step-num step-blue">3</div>
+          <div>
+            <div class="psh-step-title">Paste the prompt + your inputs</div>
+            <div class="psh-step-desc">Copy the prompt below and add your listing link, down payment %, and credit score range (optional but gives better output) at the bottom where indicated. Hit send.</div>
+          </div>
+        </div>
       </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">🤖</div>
-        <div class="why-title">ChatGPT or Claude — your choice</div>
-        <div class="why-desc">Engineered to work with both platforms. Use whichever you're comfortable with. The logic is the same. The results are powerful on either.</div>
-      </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">📊</div>
-        <div class="why-title">CPA-built logic</div>
-        <div class="why-desc">Every step mirrors how a real CPA reviews client finances — categories, subscriptions, trends, ratios, and action items. Built from 13+ years of experience.</div>
+    </div>
+
+    <div class="prompt-wrap">
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-dots"><span></span><span></span><span></span></div>
+          <span class="prompt-filename">homebuying-analyzer.prompt</span>
+          <button class="copy-btn" onclick="copyPromptById('promptText2', this)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+        <div class="prompt-body" id="promptText2">You are a mortgage expert, financial analyst, AND real estate advisor.
+
+Your job is to analyze a home purchase scenario using a property listing link + user inputs — and explain EVERYTHING in simple, everyday language (no jargon).
+
+Your goal: show the TRUE cost of owning this home — not just the mortgage.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INPUTS I WILL PROVIDE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+* Property listing link (Zillow, Redfin, Realtor, etc.)
+* ZIP code (if not clear)
+* Down payment ($ or %)
+* Credit score range (optional)
+* Income (optional)
+
+IMPORTANT:
+* Extract from the listing (if available):
+  • Home price
+  • Property taxes
+  • HOA fees
+  • Location
+* If anything is missing → make realistic assumptions AND clearly state them
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 1 — PROPERTY SNAPSHOT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Break down:
+* Purchase price
+* Down payment ($ + %)
+* Estimated loan amount
+* Estimated interest rate (based on current market + credit score)
+  → Search the web for today's jumbo or conforming 30yr fixed rate before answering
+* Property taxes (monthly + yearly)
+* Insurance estimate
+Clearly list ALL assumptions.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 2 — LOAN OPTIONS (SIMPLE)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Compare:
+* 30-Year Fixed
+* 15-Year Fixed
+* ARM (5/1 or 7/1)
+
+For each:
+* What it is (in plain language)
+* Who it's for
+* Pros / cons
+
+Keep it digestible:
+* Fixed = stable forever
+* ARM = cheaper now, risk later
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 3 — MONTHLY PAYMENT (BASE)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Estimate monthly payment for each loan type.
+
+Include:
+* Principal + Interest
+* Property taxes
+* Insurance
+* HOA (if applicable)
+* PMI (if applicable)
+
+Table format:
+| Loan Type | Rate | P+I Only | PITI (All-in) | Cash Upfront |
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 4 — TRUE COST OF OWNERSHIP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This is the MOST important section.
+
+Estimate ALL-IN monthly cost including:
+* Mortgage (P&I)
+* Property taxes
+* Insurance
+* HOA
+* Maintenance (assume 1–2% of home value annually)
+* Utilities (estimate based on ZIP/home type/square footage)
+* Pool/landscaping if applicable
+* Repairs / unexpected costs buffer
+
+Show:
+1. TRUE monthly cost
+2. TRUE annual cost
+3. 5-year cash outflow (total spent, separate from equity)
+
+Table:
+| Category | Monthly | Annual |
+
+Then summarize: "This home actually costs ~$X/month all-in"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 5 — DOWN PAYMENT STRATEGY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Compare three scenarios:
+* 20% down
+* 30% down
+* User's actual down payment %
+
+Explain:
+* Monthly payment differences
+* PMI impact
+* Opportunity cost of cash (assume 7% market return)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 6 — LENDER OPTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Based on ZIP and loan size, suggest:
+* Private/wealth banks
+* Online lenders
+* Mortgage brokers
+* Local credit unions
+
+For each:
+* Pros / cons
+* Best use case
+
+Explain why shopping 3–4 lenders matters and what rate improvement is realistic.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 7 — SMART RECOMMENDATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Recommend:
+* Best loan type for this scenario
+* Best down payment strategy
+* Best lender type
+* Target rate to negotiate toward
+
+Explain WHY in simple terms.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 8 — REAL TALK (NO BS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Be direct and honest. Cover:
+* What buyers consistently underestimate
+* Hidden costs that surprise first-time luxury buyers
+* Why the monthly mortgage number alone is misleading
+* Whether this home looks truly affordable for a typical buyer at this price point
+* Any red flags from the listing (days on market, price history, location notes)
+
+Tone: blunt but helpful. Like a smart friend who actually understands money.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HERE IS MY PROPERTY + INPUTS:
+
+[PASTE ZILLOW/REDFIN/REALTOR LINK HERE]
+Down Payment: [X%]
+Credit Score: [XXX]
+Income (optional): [$ or "skip"]</div>
+        <div class="prompt-footer">
+          <span>🏠 Paste your listing link + inputs at the bottom of the prompt before running it</span>
+          <button class="copy-btn-lg" onclick="copyPromptById('promptText2', this)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy Full Prompt
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- OUTPUT PREVIEW -->
-<section id="output">
+<section id="output" style="background:var(--bg2);">
   <div class="container">
     <div class="section-label">What you'll get back</div>
-    <h2>Your full <em>spending report.</em></h2>
-    <p class="section-sub">A sample of what the AI produces — based on real financial patterns.</p>
+    <h2>Your full <em>financial picture.</em></h2>
+    <p class="section-sub">A sample of what these prompts produce — across both spending analysis and homebuying scenarios.</p>
     <div class="output-grid">
       <div class="output-card fade-in">
-        <span class="output-tag tag-purple">Step 1</span>
+        <span class="output-tag tag-green">Spending · Step 1</span>
         <div class="output-title">Spending by Category</div>
         <div class="output-item"><span>Food &amp; Dining</span><span class="output-val val-red">$842</span></div>
         <div class="output-item"><span>Subscriptions</span><span class="output-val val-yellow">$318</span></div>
@@ -877,7 +838,7 @@ HERE IS MY TRANSACTION DATA:</div>
         <div class="output-item"><span>Transportation</span><span class="output-val val-blue">$207</span></div>
       </div>
       <div class="output-card fade-in">
-        <span class="output-tag tag-blue">Step 2</span>
+        <span class="output-tag tag-purple">Spending · Step 2</span>
         <div class="output-title">Subscriptions Audit</div>
         <div class="output-item"><span>Netflix</span><span class="output-val">$22.99</span></div>
         <div class="output-item"><span>Spotify</span><span class="output-val">$10.99</span></div>
@@ -886,7 +847,7 @@ HERE IS MY TRANSACTION DATA:</div>
         <div class="output-item"><span style="color:var(--muted);font-size:0.78rem;">⚠️ 3 redundant found</span><span class="output-val val-yellow">$72/mo</span></div>
       </div>
       <div class="output-card fade-in">
-        <span class="output-tag tag-green">Step 5</span>
+        <span class="output-tag tag-cyan">Spending · Step 5</span>
         <div class="output-title">Savings Opportunities</div>
         <div class="output-item"><span>Reduce dining 3→1/wk</span><span class="output-val val-green">+$180</span></div>
         <div class="output-item"><span>Cancel 3 unused subs</span><span class="output-val val-green">+$72</span></div>
@@ -895,7 +856,25 @@ HERE IS MY TRANSACTION DATA:</div>
         <div class="output-item"><span style="font-weight:600">Monthly savings</span><span class="output-val val-green" style="font-size:1rem">$467</span></div>
       </div>
       <div class="output-card fade-in">
-        <span class="output-tag tag-cyan">Step 6</span>
+        <span class="output-tag tag-orange">Homebuying · Step 4</span>
+        <div class="output-title">True Monthly Cost</div>
+        <div class="output-item"><span>Mortgage P&amp;I</span><span class="output-val val-blue">$4,210</span></div>
+        <div class="output-item"><span>Property taxes</span><span class="output-val val-blue">$820</span></div>
+        <div class="output-item"><span>Insurance + HOA</span><span class="output-val val-blue">$410</span></div>
+        <div class="output-item"><span>Maintenance + utils</span><span class="output-val val-blue">$580</span></div>
+        <div class="output-item"><span style="font-weight:600">True all-in cost</span><span class="output-val val-red" style="font-size:1rem">$6,020/mo</span></div>
+      </div>
+      <div class="output-card fade-in">
+        <span class="output-tag tag-blue">Homebuying · Step 5</span>
+        <div class="output-title">Down Payment Comparison</div>
+        <div class="output-item"><span>20% down</span><span class="output-val val-green">$4,210/mo</span></div>
+        <div class="output-item"><span>30% down</span><span class="output-val val-green">$3,820/mo</span></div>
+        <div class="output-item"><span>PMI savings (20%+)</span><span class="output-val val-yellow">$220/mo</span></div>
+        <div class="output-item"><span>Opp. cost (7% return)</span><span class="output-val val-yellow">$5,250/yr</span></div>
+        <div class="output-item"><span style="font-weight:600">Best strategy</span><span class="output-val val-blue">20% down</span></div>
+      </div>
+      <div class="output-card fade-in">
+        <span class="output-tag tag-purple">Spending · Step 6</span>
         <div class="output-title">Health Score Breakdown</div>
         <div class="output-item"><span>Subscription load</span><span class="output-val val-yellow">68/100</span></div>
         <div class="output-item"><span>Dining/grocery ratio</span><span class="output-val val-red">52/100</span></div>
@@ -907,8 +886,162 @@ HERE IS MY TRANSACTION DATA:</div>
   </div>
 </section>
 
+<!-- PRIVACY SECTION -->
+<section id="privacy">
+  <div class="container">
+    <div class="privacy-inner">
+      <div class="section-label">Your data, protected</div>
+      <h2>Is it safe to paste <em>financial data into AI?</em></h2>
+      <p class="section-sub">A fair question — here's the honest, factual answer, and exactly what steps to take before you paste anything sensitive.</p>
+
+      <div class="privacy-grid">
+        <!-- ChatGPT Card -->
+        <div class="privacy-platform-card fade-in">
+          <div class="privacy-platform-header">
+            <div class="privacy-platform-logo logo-gpt">🟢</div>
+            <div>
+              <div class="privacy-platform-name">ChatGPT (OpenAI)</div>
+              <span class="privacy-plan-tag plan-free">Free &amp; Plus: opt-out required</span>
+            </div>
+          </div>
+          <div class="privacy-steps-title">How to turn off data training</div>
+          <div class="privacy-step">
+            <div class="privacy-step-num">1</div>
+            <div class="privacy-step-text">Click your <strong>profile icon</strong> → <strong>Settings</strong></div>
+          </div>
+          <div class="privacy-step">
+            <div class="privacy-step-num">2</div>
+            <div class="privacy-step-text">Go to <strong>Data Controls</strong></div>
+          </div>
+          <div class="privacy-step">
+            <div class="privacy-step-num">3</div>
+            <div class="privacy-step-text">Toggle <strong>"Improve the model for everyone"</strong> to <strong>OFF</strong></div>
+          </div>
+          <div class="privacy-step">
+            <div class="privacy-step-num">4</div>
+            <div class="privacy-step-text">Click <strong>Done</strong>. This applies to your entire account on all devices immediately.</div>
+          </div>
+          <div style="margin-top:16px;padding:12px 14px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;font-size:0.8rem;color:var(--muted);line-height:1.6;">
+            💡 <strong style="color:var(--text);">Tip:</strong> You can also use <strong style="color:var(--text);">Temporary Chats</strong> for any sensitive session — they aren't stored or used for training, and are deleted after 30 days. Available on free and paid accounts.
+          </div>
+        </div>
+
+        <!-- Claude Card -->
+        <div class="privacy-platform-card fade-in">
+          <div class="privacy-platform-header">
+            <div class="privacy-platform-logo logo-claude">🟠</div>
+            <div>
+              <div class="privacy-platform-name">Claude (Anthropic)</div>
+              <span class="privacy-plan-tag plan-free">Free &amp; Pro: opt-out required</span>
+            </div>
+          </div>
+          <div class="privacy-steps-title">How to turn off data training</div>
+          <div class="privacy-step">
+            <div class="privacy-step-num">1</div>
+            <div class="privacy-step-text">Go to <strong>Settings</strong> → <strong>Privacy</strong></div>
+          </div>
+          <div class="privacy-step">
+            <div class="privacy-step-num">2</div>
+            <div class="privacy-step-text">Find <strong>"Help improve Claude"</strong> (also called model training setting)</div>
+          </div>
+          <div class="privacy-step">
+            <div class="privacy-step-num">3</div>
+            <div class="privacy-step-text">Toggle it <strong>OFF</strong>. This stops new chats from being used in future model training.</div>
+          </div>
+          <div class="privacy-step">
+            <div class="privacy-step-num">4</div>
+            <div class="privacy-step-text"><strong>Do not reopen old sensitive chats</strong> — "resuming" a chat makes it eligible under your current setting.</div>
+          </div>
+          <div style="margin-top:16px;padding:12px 14px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;font-size:0.8rem;color:var(--muted);line-height:1.6;">
+            💡 <strong style="color:var(--text);">Note:</strong> As of October 2025, Anthropic updated its policy so Free and Pro users are opted <em>in</em> by default. If you haven't checked your settings recently, do it before pasting financial data.
+          </div>
+        </div>
+      </div>
+
+      <!-- Best Practices -->
+      <div class="privacy-best-practices fade-in">
+        <div class="privacy-bp-header">
+          <div class="privacy-bp-icon">🔒</div>
+          <div class="privacy-bp-title">Best practices before you paste anything financial</div>
+        </div>
+        <div class="privacy-bp-grid">
+          <div class="privacy-bp-item">
+            <div class="privacy-bp-check">✓</div>
+            <div class="privacy-bp-text"><strong>Turn off training first.</strong> Do this before you paste any transaction data. Takes 30 seconds and applies to your whole account.</div>
+          </div>
+          <div class="privacy-bp-item">
+            <div class="privacy-bp-check">✓</div>
+            <div class="privacy-bp-text"><strong>Never paste full card numbers.</strong> Your transaction history (amounts, merchants, dates) is fine. Full card or bank account numbers are not necessary and should never be shared.</div>
+          </div>
+          <div class="privacy-bp-item">
+            <div class="privacy-bp-check">✓</div>
+            <div class="privacy-bp-text"><strong>Remove your name if you want.</strong> You can redact your name and address from exported CSVs before pasting — the prompt only needs amounts, dates, and merchant names to work.</div>
+          </div>
+          <div class="privacy-bp-item">
+            <div class="privacy-bp-check">✓</div>
+            <div class="privacy-bp-text"><strong>Use Temporary Chat (ChatGPT) for sensitive sessions.</strong> Temporary chats aren't stored or used for training, and are automatically deleted after 30 days.</div>
+          </div>
+          <div class="privacy-bp-item">
+            <div class="privacy-bp-check">✓</div>
+            <div class="privacy-bp-text"><strong>Your data is encrypted in transit and at rest.</strong> Both OpenAI and Anthropic use standard encryption for all conversations. Neither platform sells your data to third parties.</div>
+          </div>
+          <div class="privacy-bp-item">
+            <div class="privacy-bp-check">✓</div>
+            <div class="privacy-bp-text"><strong>Delete the chat when done.</strong> Deleted conversations are not used for future training on either platform. Clean up after yourself for extra peace of mind.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="privacy-disclaimer">
+        <strong>A note on enterprise vs. personal plans:</strong> If you use ChatGPT Team, ChatGPT Enterprise, or Claude for Work, your data is excluded from model training by default — no opt-out needed. For personal accounts (Free, Plus, and Pro on either platform), you need to manually disable training as described above. The steps above are accurate as of early 2026, but privacy settings can change — it's worth checking your account settings periodically. This information is provided for general awareness and is not legal or compliance advice.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY THE AI DON -->
+<section id="why">
+  <div class="container">
+    <div class="section-label">Why The AI Don</div>
+    <h2>Not an app. <em>Real intelligence.</em></h2>
+    <p class="section-sub">Most finance tools give you charts. These prompts give you a CPA's brain working on your actual numbers.</p>
+    <div class="why-grid">
+      <div class="why-card fade-in">
+        <div class="why-icon">🆓</div>
+        <div class="why-title">No cost to get started</div>
+        <div class="why-desc">Both prompts are free to use right now. Copy them, paste them, and get your financial breakdown — no subscription, no signup required.</div>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">🤖</div>
+        <div class="why-title">ChatGPT or Claude — your choice</div>
+        <div class="why-desc">Engineered to work on both platforms. Use whichever you're comfortable with. The CPA logic is the same. The results are powerful on either.</div>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">🎯</div>
+        <div class="why-title">Specific, not generic</div>
+        <div class="why-desc">Forget "spend less on dining." These prompts tell you which merchants to cut, which frequency to reduce, and the exact dollars you'd save per month.</div>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">📊</div>
+        <div class="why-title">CPA-built from 13+ years of experience</div>
+        <div class="why-desc">Every step mirrors how a real CPA reviews client finances — categories, subscriptions, trends, ratios, and action items. Built on real-world experience.</div>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">🏠</div>
+        <div class="why-title">Beyond just spending</div>
+        <div class="why-desc">The homebuying prompt reveals the true all-in cost of ownership that most buyers never calculate — before they're locked in.</div>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">⚡</div>
+        <div class="why-title">Faster than manual research</div>
+        <div class="why-desc">What takes a financial advisor an hour, these prompts surface in seconds. AI does the heavy lifting. You get the clarity.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
-<section id="about">
+<section id="about" style="background:var(--bg2);">
   <div class="container">
     <div class="about-inner">
       <div class="about-avatar-wrap">
@@ -964,7 +1097,7 @@ HERE IS MY TRANSACTION DATA:</div>
 </section>
 
 <!-- EMAIL -->
-<section id="email" style="background:var(--bg2);">
+<section id="email">
   <div class="container">
     <div class="email-inner fade-in">
       <div class="section-label" style="text-align:center;">Stay in the loop</div>
@@ -985,27 +1118,19 @@ HERE IS MY TRANSACTION DATA:</div>
 </footer>
 
 <script>
-function getPromptText() {
-  return document.getElementById('promptText').innerText;
-}
-function copyPrompt(btn) {
-  navigator.clipboard.writeText(getPromptText()).then(() => {
-    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+function copyPromptById(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const isLg = btn.classList.contains('copy-btn-lg');
+    const copied = isLg
+      ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied!'
+      : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+    const orig = isLg
+      ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Full Prompt'
+      : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy';
+    btn.innerHTML = copied;
     btn.classList.add('copied');
-    setTimeout(() => {
-      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy';
-      btn.classList.remove('copied');
-    }, 2500);
-  });
-}
-function copyPromptLg(btn) {
-  navigator.clipboard.writeText(getPromptText()).then(() => {
-    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Full Prompt';
-      btn.classList.remove('copied');
-    }, 2500);
+    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2500);
   });
 }
 function toggleMenu() {
@@ -1032,23 +1157,13 @@ async function submitEmail() {
       btn.style.background = 'linear-gradient(135deg,#28c840,#38d9f5)';
       input.value = '';
       input.disabled = true;
-    } else {
-      btn.textContent = 'Try again';
-      btn.disabled = false;
-    }
-  } catch {
-    btn.textContent = 'Try again';
-    btn.disabled = false;
-  }
+    } else { btn.textContent = 'Try again'; btn.disabled = false; }
+  } catch { btn.textContent = 'Try again'; btn.disabled = false; }
 }
-
-// Scroll fade-in
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, {threshold:0.08});
 document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-
-// Hero cards on load
 window.addEventListener('load', () => {
   document.querySelectorAll('#hero .fade-in').forEach(el => el.classList.add('visible'));
 });
