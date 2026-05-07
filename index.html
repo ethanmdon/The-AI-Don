@@ -791,6 +791,84 @@ h1 em::after{
 .privacy-disclaimer strong{color:var(--text-dim);font-weight:600}
 
 /* ============================
+   LEGAL DISCLAIMER
+   ============================ */
+.disclaimer-card{
+  background:linear-gradient(180deg,var(--panel) 0%,rgba(13,16,25,0.6) 100%);
+  border:1px solid rgba(231,201,137,0.22);
+  border-radius:18px;
+  padding:28px;
+  position:relative;overflow:hidden;
+}
+.disclaimer-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(231,201,137,0.45),transparent);
+}
+@media(min-width:680px){.disclaimer-card{padding:32px 36px}}
+.disclaimer-head{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:22px;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--line);
+}
+.disclaimer-icon{
+  width:42px;height:42px;border-radius:10px;
+  background:rgba(231,201,137,0.1);
+  border:1px solid rgba(231,201,137,0.32);
+  display:grid;place-items:center;color:var(--gold);
+  flex-shrink:0;
+}
+.disclaimer-title{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:1.15rem;letter-spacing:-0.01em;line-height:1.25;
+  color:var(--text);
+}
+@media(min-width:680px){.disclaimer-title{font-size:1.3rem}}
+.disclaimer-lede{
+  font-size:0.95rem;color:var(--text);line-height:1.6;
+  margin-bottom:18px;
+}
+.disclaimer-lede strong{color:var(--gold);font-weight:600}
+.disclaimer-points{
+  display:flex;flex-direction:column;gap:14px;
+  margin-bottom:20px;
+}
+.disclaimer-point{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:0.9rem;color:var(--text-dim);line-height:1.6;
+}
+.disclaimer-point-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--gold);
+  flex-shrink:0;margin-top:9px;
+  box-shadow:0 0 8px rgba(231,201,137,0.5);
+}
+.disclaimer-point strong{color:var(--text);font-weight:600}
+.disclaimer-foot{
+  margin-top:22px;
+  padding:16px 18px;
+  background:rgba(231,201,137,0.04);
+  border:1px solid rgba(231,201,137,0.14);
+  border-radius:10px;
+  font-size:0.82rem;color:var(--muted);line-height:1.6;
+  font-style:italic;
+}
+.disclaimer-foot strong{color:var(--text-dim);font-weight:600;font-style:normal}
+
+.footer-disclaimer{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+  font-size:0.72rem;
+  color:var(--muted);
+  line-height:1.55;
+  max-width:680px;
+  margin-left:auto;margin-right:auto;
+}
+.footer-disclaimer a{color:var(--text-dim);text-decoration:underline}
+.footer-disclaimer a:hover{color:var(--gold)}
+
+/* ============================
    ABOUT
    ============================ */
 .about-row{
@@ -961,6 +1039,7 @@ footer a:hover{color:var(--text)}
     <li><a href="#library">Library</a></li>
     <li><a href="#privacy">Privacy</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#disclaimer">Disclaimer</a></li>
   </ul>
   <div class="nav-right">
     <a href="#featured" class="nav-cta">Get the Prompts</a>
@@ -973,6 +1052,7 @@ footer a:hover{color:var(--text)}
   <a href="#library" onclick="toggleMenu()">Prompt library <span class="arrow">&rarr;</span></a>
   <a href="#privacy" onclick="toggleMenu()">Data privacy <span class="arrow">&rarr;</span></a>
   <a href="#about" onclick="toggleMenu()">About <span class="arrow">&rarr;</span></a>
+  <a href="#disclaimer" onclick="toggleMenu()">Disclaimer <span class="arrow">&rarr;</span></a>
   <a href="#email" onclick="toggleMenu()">Subscribe <span class="arrow">&rarr;</span></a>
 </div>
 
@@ -988,7 +1068,7 @@ footer a:hover{color:var(--text)}
     </div>
   </div>
   <div class="hero-content">
-    <div class="hero-badge fade-in"><span class="dot"></span>Built by a CPA &middot; 13+ years</div>
+    <div class="hero-badge fade-in"><span class="dot"></span>CPA-built &middot; for everyday people</div>
     <h1 class="fade-in">Copy these prompts.<br>Fix your <em>finances</em>.</h1>
     <p class="hero-sub fade-in">CPA-built AI prompts you can paste into <strong>ChatGPT</strong> or <strong>Claude</strong> in 60 seconds. No tools to install. No accounts. Just answers.</p>
     <div class="hero-cta-row fade-in">
@@ -1001,15 +1081,15 @@ footer a:hover{color:var(--text)}
     <div class="hero-strip fade-in">
       <div class="hero-strip-item">
         <div class="hero-strip-num">CPA</div>
-        <div class="hero-strip-lbl">Licensed</div>
+        <div class="hero-strip-lbl">Built by a CPA</div>
       </div>
       <div class="hero-strip-item">
-        <div class="hero-strip-num">13+ yrs</div>
-        <div class="hero-strip-lbl">Experience</div>
+        <div class="hero-strip-num">Free</div>
+        <div class="hero-strip-lbl">No signup needed</div>
       </div>
       <div class="hero-strip-item">
-        <div class="hero-strip-num">IPO</div>
-        <div class="hero-strip-lbl">Scale</div>
+        <div class="hero-strip-num">60s</div>
+        <div class="hero-strip-lbl">Copy &amp; paste</div>
       </div>
     </div>
   </div>
@@ -1019,28 +1099,7 @@ footer a:hover{color:var(--text)}
   </div>
 </section>
 
-<!-- TRUST -->
-<section id="trust">
-  <div class="container-narrow">
-    <div class="trust-row fade-in">
-      <div class="trust-item">
-        <div class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></div>
-        <div class="num">CPA</div>
-        <div class="lbl">Licensed Certified Public Accountant</div>
-      </div>
-      <div class="trust-item">
-        <div class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-        <div class="num">13+ years</div>
-        <div class="lbl">Finance &amp; accounting at scale</div>
-      </div>
-      <div class="trust-item">
-        <div class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 6-6"/></svg></div>
-        <div class="num">Pre-IPO &rarr; Public</div>
-        <div class="lbl">Scaled finance through IPO</div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- TRUST strip removed — all credentials now consolidated in the About Me section. -->
 
 <!-- DIVIDER -->
 <div class="section-divider"><div class="divider-mark"></div></div>
@@ -1530,6 +1589,61 @@ STYLE:
 <!-- DIVIDER -->
 <div class="section-divider"><div class="divider-mark"></div></div>
 
+<!-- LEGAL DISCLAIMER -->
+<section id="disclaimer">
+  <div class="container-narrow">
+    <div class="section-head center fade-in">
+      <div class="eyebrow">Important</div>
+      <h2>Legal <em>disclaimer</em></h2>
+      <p class="section-sub">Read this before using any prompt or output on this site.</p>
+    </div>
+    <div class="disclaimer-card fade-in">
+      <div class="disclaimer-head">
+        <div class="disclaimer-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+        </div>
+        <div class="disclaimer-title">Educational use only &mdash; not professional advice</div>
+      </div>
+
+      <p class="disclaimer-lede">The prompts, content, and AI-generated outputs on this website are <strong>for educational and informational purposes only</strong>. They are not, and should not be relied upon as, professional financial, accounting, tax, legal, or business advice.</p>
+
+      <div class="disclaimer-points">
+        <div class="disclaimer-point">
+          <span class="disclaimer-point-dot"></span>
+          <span><strong>AI outputs can be wrong.</strong> Information generated by ChatGPT, Claude, or any AI tool may be inaccurate, incomplete, outdated, or inappropriate for your specific situation. Models hallucinate, miscalculate, and miss context.</span>
+        </div>
+        <div class="disclaimer-point">
+          <span class="disclaimer-point-dot"></span>
+          <span><strong>You must verify everything.</strong> Independently verify all AI-generated outputs before acting on them. Cross-check numbers, sources, and conclusions against authoritative records.</span>
+        </div>
+        <div class="disclaimer-point">
+          <span class="disclaimer-point-dot"></span>
+          <span><strong>Consult a licensed professional.</strong> Before making any financial, accounting, tax, legal, or business decision, consult a qualified CPA, tax advisor, attorney, financial advisor, or other licensed professional appropriate to your situation.</span>
+        </div>
+        <div class="disclaimer-point">
+          <span class="disclaimer-point-dot"></span>
+          <span><strong>No professional-client relationship.</strong> Use of this website, the prompts, the content, or any AI-generated outputs does not create a CPA-client, attorney-client, advisor-client, or any other professional relationship between you and The AI Don or the website owner.</span>
+        </div>
+        <div class="disclaimer-point">
+          <span class="disclaimer-point-dot"></span>
+          <span><strong>No liability.</strong> The AI Don and the website owner assume no liability for any losses, damages, errors, omissions, decisions, or actions taken based on the prompts, website content, or AI-generated outputs. You use this site at your own risk.</span>
+        </div>
+      </div>
+
+      <div class="disclaimer-foot">
+        <strong>Bottom line:</strong> these prompts are tools to help you ask better questions and learn faster. They are not a replacement for a real advisor who knows your situation. When the stakes are real &mdash; taxes, contracts, big purchases, business decisions &mdash; talk to a licensed pro.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="section-divider"><div class="divider-mark"></div></div>
+
 <!-- PRIVACY -->
 <section id="privacy">
   <div class="container">
@@ -1618,8 +1732,9 @@ STYLE:
         <div class="headshot-grade"></div>
       </div>
       <div class="about-text">
-        <p>I'm a <strong>CPA with 13+ years</strong> in finance and accounting &mdash; from Big 4 audit through scaling a finance team from pre-IPO to public company.</p>
-        <p>I test AI on real financial workflows so you don't have to. Everything on this site is a prompt I actually use.</p>
+        <p>I'm a <strong>CPA with 13+ years of experience</strong> across public accounting and high-growth tech &mdash; scaling finance and accounting teams through the journey from pre-IPO to public company.</p>
+        <p>I built The AI Don to help people use AI prompts to better understand their finances &mdash; without the jargon, the gatekeeping, or the price tag of traditional advisory.</p>
+        <p>Everything on this site is a prompt I actually use. I test AI on real financial workflows so you don't have to.</p>
       </div>
     </div>
   </div>
@@ -1670,6 +1785,9 @@ STYLE:
   <div class="container">
     <p>&copy; 2026 The AI Don &middot; <a href="mailto:mrdon@theaidon.ai">mrdon@theaidon.ai</a></p>
     <p style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.06em">theaidon.ai</p>
+    <p class="footer-disclaimer">
+      Content on this site is for educational purposes only and is not professional financial, tax, legal, or accounting advice. AI-generated outputs may be inaccurate &mdash; always verify and consult a licensed professional before making decisions. Use of this site does not create a professional-client relationship. <a href="#disclaimer">Read the full disclaimer &rarr;</a>
+    </p>
   </div>
 </footer>
 
@@ -1722,7 +1840,7 @@ const obs = new IntersectionObserver((entries) => {
 }, {threshold:0.08});
 document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 window.addEventListener('load', () => {
-  document.querySelectorAll('#hero .fade-in, #trust .fade-in').forEach(el => el.classList.add('visible'));
+  document.querySelectorAll('#hero .fade-in').forEach(el => el.classList.add('visible'));
 });
 
 // Close mobile menu on outside click
