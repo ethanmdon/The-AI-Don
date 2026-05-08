@@ -790,6 +790,59 @@ h1 em::after{
 }
 .privacy-disclaimer strong{color:var(--text-dim);font-weight:600}
 
+.privacy-answer{
+  background:linear-gradient(180deg,var(--panel) 0%,rgba(13,16,25,0.6) 100%);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:26px 26px 22px;
+  margin-bottom:24px;
+  position:relative;overflow:hidden;
+}
+.privacy-answer::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(124,111,247,0.4),rgba(56,217,245,0.4),transparent);
+}
+.privacy-answer-eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:0.66rem;
+  color:var(--purple-2);text-transform:uppercase;letter-spacing:0.14em;
+  margin-bottom:10px;
+}
+.privacy-answer-headline{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:1.15rem;letter-spacing:-0.01em;line-height:1.35;
+  margin-bottom:14px;color:var(--text);
+}
+.privacy-answer-headline em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--purple-2),var(--cyan));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.privacy-answer p{
+  font-size:0.92rem;color:var(--text-dim);line-height:1.65;
+  margin-bottom:12px;
+}
+.privacy-answer p:last-child{margin-bottom:0}
+.privacy-answer p strong{color:var(--text);font-weight:600}
+.privacy-certs{
+  display:flex;flex-wrap:wrap;gap:8px;
+  margin:14px 0 16px;
+}
+.privacy-cert{
+  font-family:'JetBrains Mono',monospace;font-size:0.68rem;
+  color:var(--green);background:rgba(61,255,160,0.06);
+  border:1px solid rgba(61,255,160,0.22);
+  padding:5px 10px;border-radius:6px;letter-spacing:0.04em;
+  font-weight:600;
+}
+.privacy-caveat{
+  margin-top:14px;padding:12px 14px;
+  background:rgba(231,201,137,0.05);
+  border:1px solid rgba(231,201,137,0.18);
+  border-radius:9px;
+  font-size:0.84rem;color:var(--text-dim);line-height:1.6;
+}
+.privacy-caveat strong{color:var(--gold);font-weight:600}
+
 /* ============================
    LEGAL DISCLAIMER
    ============================ */
@@ -2229,6 +2282,24 @@ STYLE:
       <div class="eyebrow">Your data, protected</div>
       <h2>Is it safe to paste financial data into <em>AI?</em></h2>
       <p class="section-sub">A fair question &mdash; here's the honest answer, and the exact steps to take before you paste anything sensitive.</p>
+    </div>
+
+    <!-- THE HONEST ANSWER -->
+    <div class="privacy-answer fade-in">
+      <div class="privacy-answer-eyebrow">The honest answer</div>
+      <div class="privacy-answer-headline">Both ChatGPT and Claude run on <em>enterprise-grade security infrastructure</em>. The bigger risk is what <em>you</em> paste.</div>
+      <p>OpenAI and Anthropic both maintain the standard security certifications you'd expect from any serious cloud platform handling sensitive data &mdash; including independent third-party audits of their controls.</p>
+      <div class="privacy-certs">
+        <span class="privacy-cert">SOC 2 Type II</span>
+        <span class="privacy-cert">ISO 27001</span>
+        <span class="privacy-cert">ISO 42001</span>
+        <span class="privacy-cert">AES-256 at rest</span>
+        <span class="privacy-cert">TLS 1.2+ in transit</span>
+      </div>
+      <p>Translation: data is encrypted both when it's traveling and when it's stored, access is tightly controlled, and an outside auditor regularly verifies it. Both companies publish their compliance documentation publicly &mdash; you can review it at <a href="https://trust.openai.com" target="_blank" rel="noopener" style="color:var(--purple-2);text-decoration:none">trust.openai.com</a> and <a href="https://trust.anthropic.com" target="_blank" rel="noopener" style="color:var(--purple-2);text-decoration:none">trust.anthropic.com</a>.</p>
+      <div class="privacy-caveat">
+        <strong>Important caveat:</strong> The strongest contractual protections (no training on your data by default, formal data processing agreements, longer audit scope) apply to <strong>business tiers</strong> &mdash; ChatGPT Team/Enterprise/Edu and Claude for Work. On personal accounts (Free, Plus, Pro), the underlying infrastructure is the same, but you're responsible for opting out of training and managing what you share. The steps below show you how.
+      </div>
     </div>
 
     <div class="privacy-grid">
