@@ -870,6 +870,310 @@ h1 em::after{
 .footer-disclaimer strong{color:var(--text-dim);font-weight:600}
 
 /* ============================
+   DISCLAIMER GATE MODAL
+   ============================ */
+.disclaimer-modal{
+  position:fixed;inset:0;z-index:9999;
+  display:none;
+  align-items:center;justify-content:center;
+  padding:20px;
+  background:rgba(4,5,10,0.78);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  opacity:0;transition:opacity .25s ease;
+}
+.disclaimer-modal.open{display:flex;opacity:1;animation:modalFade .3s ease forwards}
+@keyframes modalFade{from{opacity:0}to{opacity:1}}
+.disclaimer-modal-card{
+  position:relative;
+  width:100%;max-width:480px;
+  background:linear-gradient(180deg,rgba(20,23,33,0.96) 0%,rgba(11,13,20,0.96) 100%);
+  border:1px solid rgba(124,111,247,0.25);
+  border-radius:20px;
+  padding:32px 26px 24px;
+  box-shadow:0 0 0 1px rgba(124,111,247,0.08), 0 30px 80px rgba(0,0,0,0.7), 0 0 60px rgba(124,111,247,0.18);
+  transform:translateY(12px) scale(0.98);
+  opacity:0;
+  animation:modalSlide .35s cubic-bezier(0.22,0.61,0.36,1) .05s forwards;
+  overflow:hidden;
+}
+@keyframes modalSlide{to{transform:translateY(0) scale(1);opacity:1}}
+@media(min-width:600px){.disclaimer-modal-card{padding:38px 36px 28px}}
+.disclaimer-modal-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
+  background:linear-gradient(90deg,transparent,var(--purple),var(--cyan),transparent);
+  z-index:2;
+}
+.disclaimer-modal-glow{
+  position:absolute;top:-80px;right:-80px;width:240px;height:240px;
+  background:radial-gradient(circle,rgba(124,111,247,0.22) 0%,transparent 70%);
+  pointer-events:none;
+}
+.disclaimer-modal-icon{
+  width:46px;height:46px;border-radius:12px;
+  background:rgba(231,201,137,0.1);
+  border:1px solid rgba(231,201,137,0.32);
+  display:grid;place-items:center;color:var(--gold);
+  margin-bottom:18px;position:relative;z-index:1;
+}
+.disclaimer-modal-eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:0.66rem;
+  color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;
+  margin-bottom:8px;font-weight:600;position:relative;z-index:1;
+}
+.disclaimer-modal-title{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:1.45rem;letter-spacing:-0.02em;line-height:1.2;
+  color:var(--text);margin-bottom:18px;position:relative;z-index:1;
+}
+.disclaimer-modal-body{
+  font-size:0.92rem;color:var(--text-dim);line-height:1.65;
+  display:flex;flex-direction:column;gap:12px;
+  margin-bottom:22px;position:relative;z-index:1;
+}
+.disclaimer-modal-body p{margin:0}
+.disclaimer-modal-actions{
+  display:flex;flex-direction:column;gap:10px;
+  position:relative;z-index:1;
+}
+@media(min-width:520px){.disclaimer-modal-actions{flex-direction:row;gap:12px}}
+.disclaimer-modal-cancel{
+  flex:1;padding:13px 20px;border-radius:10px;cursor:pointer;
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--line-2);
+  color:var(--text-dim);
+  font-family:'Inter',sans-serif;font-weight:500;font-size:0.92rem;
+  transition:all .2s;
+  min-height:48px;
+}
+.disclaimer-modal-cancel:hover{color:var(--text);background:rgba(255,255,255,0.06);border-color:var(--text-dim)}
+.disclaimer-modal-agree{
+  flex:1.3;padding:13px 20px;border-radius:10px;cursor:pointer;border:none;
+  background:linear-gradient(135deg,var(--purple),var(--purple-deep));
+  color:#fff;
+  font-family:'Inter',sans-serif;font-weight:600;font-size:0.92rem;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  transition:all .25s;
+  box-shadow:0 6px 20px rgba(124,111,247,0.42);
+  min-height:48px;
+}
+.disclaimer-modal-agree:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(124,111,247,0.55)}
+.disclaimer-modal-agree:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.disclaimer-modal-foot{
+  margin-top:16px;text-align:center;position:relative;z-index:1;
+  padding-top:16px;border-top:1px solid var(--line);
+}
+.disclaimer-modal-foot a{
+  font-family:'JetBrains Mono',monospace;font-size:0.72rem;
+  color:var(--muted);letter-spacing:0.04em;text-decoration:none;
+  transition:color .2s;
+}
+.disclaimer-modal-foot a:hover{color:var(--gold)}
+
+/* ============================
+   FEATURE GRID
+   ============================ */
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin:28px 0 36px;
+}
+@media(min-width:600px){.feature-grid{grid-template-columns:repeat(4,1fr);gap:14px;margin:32px 0 44px}}
+.feature-tile{
+  position:relative;
+  background:linear-gradient(180deg,rgba(20,23,33,0.6) 0%,rgba(11,13,20,0.4) 100%);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:16px 14px;
+  display:flex;flex-direction:column;gap:8px;
+  transition:transform .3s, border-color .3s, box-shadow .3s;
+  overflow:hidden;
+}
+@media(min-width:600px){.feature-tile{padding:20px 18px}}
+.feature-tile::before{
+  content:'';position:absolute;inset:0;border-radius:14px;
+  background:radial-gradient(circle at top right, rgba(124,111,247,0.0) 0%, transparent 70%);
+  transition:background .35s;pointer-events:none;
+}
+.feature-tile:hover{transform:translateY(-3px);border-color:rgba(124,111,247,0.32);box-shadow:0 16px 40px rgba(0,0,0,0.4)}
+.feature-tile:hover::before{background:radial-gradient(circle at top right, rgba(124,111,247,0.14) 0%, transparent 70%)}
+.feature-tile-icon{
+  width:34px;height:34px;border-radius:9px;
+  background:rgba(124,111,247,0.1);
+  border:1px solid rgba(124,111,247,0.25);
+  display:grid;place-items:center;color:var(--purple-2);
+  position:relative;z-index:1;
+  box-shadow:0 0 14px rgba(124,111,247,0.12) inset;
+}
+.feature-tile:nth-child(2n) .feature-tile-icon{background:rgba(56,217,245,0.08);border-color:rgba(56,217,245,0.24);color:var(--cyan)}
+.feature-tile:nth-child(3n) .feature-tile-icon{background:rgba(231,201,137,0.08);border-color:rgba(231,201,137,0.22);color:var(--gold)}
+.feature-tile:nth-child(5n) .feature-tile-icon{background:rgba(61,255,160,0.08);border-color:rgba(61,255,160,0.22);color:var(--green)}
+.feature-tile-name{
+  font-family:'Inter',sans-serif;font-weight:600;font-size:0.86rem;
+  color:var(--text);letter-spacing:-0.005em;line-height:1.3;
+  position:relative;z-index:1;
+}
+@media(min-width:600px){.feature-tile-name{font-size:0.92rem}}
+
+/* ============================
+   IO TRIPLET (Upload / Get / Built for)
+   ============================ */
+.io-triplet{
+  display:grid;grid-template-columns:1fr;gap:12px;
+  padding:0 22px 6px;position:relative;z-index:1;
+}
+@media(min-width:760px){.io-triplet{grid-template-columns:1fr 1fr 1fr;gap:14px;padding:0 30px 6px}}
+.io-block{
+  background:rgba(0,0,0,0.22);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:14px 14px 12px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.io-block h5{
+  font-family:'JetBrains Mono',monospace;font-size:0.62rem;
+  color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;font-weight:600;
+  display:flex;align-items:center;gap:7px;
+}
+.io-block h5::before{
+  content:'';width:5px;height:5px;border-radius:50%;
+  background:var(--purple);box-shadow:0 0 8px var(--purple);flex-shrink:0;
+}
+.io-block.gets h5::before{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.io-block.built h5::before{background:var(--gold);box-shadow:0 0 8px var(--gold)}
+.io-chips{display:flex;flex-wrap:wrap;gap:6px}
+.io-chip{
+  font-size:0.74rem;color:var(--text);
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--line-2);
+  padding:5px 9px;border-radius:6px;line-height:1.3;
+  font-family:'Inter',sans-serif;font-weight:500;
+}
+
+/* ============================
+   KPI PREVIEW DASHBOARD
+   ============================ */
+.kpi-preview{
+  margin:24px 22px 0;
+  padding:18px 16px;
+  background:linear-gradient(180deg,rgba(8,9,15,0.85) 0%,rgba(4,5,10,0.95) 100%);
+  border:1px solid var(--line);
+  border-radius:14px;
+  position:relative;overflow:hidden;
+}
+@media(min-width:600px){.kpi-preview{margin:24px 30px 0;padding:22px 20px}}
+.kpi-preview::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:60%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+  opacity:0.5;
+}
+.kpi-preview-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:14px;gap:10px;
+}
+.kpi-preview-label{
+  font-family:'JetBrains Mono',monospace;font-size:0.62rem;
+  color:var(--cyan);letter-spacing:0.18em;text-transform:uppercase;font-weight:600;
+  display:flex;align-items:center;gap:7px;
+}
+.kpi-preview-label::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--cyan);box-shadow:0 0 10px var(--cyan);
+  animation:pulseDot 2s ease-in-out infinite;
+}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:0.4}}
+.kpi-preview-tag{
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+  color:var(--muted);letter-spacing:0.08em;
+}
+.kpi-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:8px;
+}
+@media(min-width:600px){.kpi-grid{grid-template-columns:repeat(3,1fr);gap:10px}}
+.kpi-card{
+  background:rgba(255,255,255,0.02);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:12px 12px 10px;
+  position:relative;overflow:hidden;
+  transition:border-color .3s, transform .3s;
+}
+.kpi-card:hover{border-color:rgba(124,111,247,0.32);transform:translateY(-2px)}
+.kpi-card-label{
+  font-family:'JetBrains Mono',monospace;font-size:0.58rem;
+  color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;
+  margin-bottom:6px;
+}
+.kpi-card-value{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:1.15rem;color:var(--text);letter-spacing:-0.01em;
+  line-height:1.1;margin-bottom:4px;
+}
+@media(min-width:600px){.kpi-card-value{font-size:1.32rem}}
+.kpi-card-delta{
+  font-family:'JetBrains Mono',monospace;font-size:0.68rem;
+  display:inline-flex;align-items:center;gap:3px;font-weight:600;
+}
+.kpi-card-delta.up{color:var(--green)}
+.kpi-card-delta.down{color:#ff6b6b}
+.kpi-card-spark{
+  position:absolute;bottom:0;left:0;right:0;height:24px;
+  pointer-events:none;opacity:0.7;
+}
+
+/* ============================
+   PROMPT META ROW
+   ============================ */
+.prompt-meta-row{
+  display:grid;grid-template-columns:1fr;gap:8px;
+  padding:14px 22px;
+  border-top:1px solid var(--line);
+  background:rgba(0,0,0,0.18);
+  position:relative;z-index:1;
+}
+@media(min-width:600px){.prompt-meta-row{grid-template-columns:repeat(3,1fr);gap:14px;padding:14px 30px}}
+.prompt-meta{
+  display:flex;align-items:center;gap:10px;
+  font-size:0.78rem;color:var(--text-dim);
+}
+.prompt-meta-icon{
+  width:26px;height:26px;border-radius:7px;
+  background:rgba(124,111,247,0.08);
+  border:1px solid var(--line-2);
+  display:grid;place-items:center;color:var(--purple-2);
+  flex-shrink:0;
+}
+.prompt-meta:nth-child(2) .prompt-meta-icon{color:var(--cyan);background:rgba(56,217,245,0.07)}
+.prompt-meta:nth-child(3) .prompt-meta-icon{color:var(--gold);background:rgba(231,201,137,0.07)}
+.prompt-meta-text{display:flex;flex-direction:column;gap:1px;line-height:1.25;min-width:0}
+.prompt-meta-text strong{color:var(--text);font-weight:600;font-size:0.82rem}
+.prompt-meta-text span{
+  font-family:'JetBrains Mono',monospace;font-size:0.62rem;
+  color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;
+}
+
+/* ============================
+   STICKY MOBILE COPY (featured only)
+   ============================ */
+.sticky-copy-wrap{display:none}
+@media(max-width:760px){
+  .sticky-copy-wrap.active{
+    display:block;
+    position:fixed;left:0;right:0;bottom:0;z-index:50;
+    padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    background:linear-gradient(180deg,transparent 0%,rgba(4,5,10,0.92) 30%,rgba(4,5,10,0.98) 100%);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);
+    pointer-events:auto;
+  }
+  .sticky-copy-wrap.active .copy-btn{
+    width:100%;justify-content:center;padding:14px 20px;font-size:0.95rem;
+    box-shadow:0 8px 24px rgba(124,111,247,0.45);
+  }
+}
+
+/* ============================
    ABOUT
    ============================ */
 .about-row{
@@ -1036,11 +1340,11 @@ footer a:hover{color:var(--text)}
   <a href="#hero" class="logo"><span class="logo-mark"><span>D</span></span> The AI Don</a>
   <ul class="nav-links">
     <li><a href="#how">How it works</a></li>
-    <li><a href="#featured">Flagship</a></li>
+    <li><a href="#featured">Featured</a></li>
     <li><a href="#library">Library</a></li>
+    <li><a href="#disclaimer">Disclaimer</a></li>
     <li><a href="#privacy">Privacy</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#disclaimer">Disclaimer</a></li>
   </ul>
   <div class="nav-right">
     <a href="#featured" class="nav-cta">Get the Prompts</a>
@@ -1049,11 +1353,11 @@ footer a:hover{color:var(--text)}
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#how" onclick="toggleMenu()">How it works <span class="arrow">&rarr;</span></a>
-  <a href="#featured" onclick="toggleMenu()">Flagship prompt <span class="arrow">&rarr;</span></a>
+  <a href="#featured" onclick="toggleMenu()">Featured prompt <span class="arrow">&rarr;</span></a>
   <a href="#library" onclick="toggleMenu()">Prompt library <span class="arrow">&rarr;</span></a>
+  <a href="#disclaimer" onclick="toggleMenu()">Disclaimer <span class="arrow">&rarr;</span></a>
   <a href="#privacy" onclick="toggleMenu()">Data privacy <span class="arrow">&rarr;</span></a>
   <a href="#about" onclick="toggleMenu()">About <span class="arrow">&rarr;</span></a>
-  <a href="#disclaimer" onclick="toggleMenu()">Disclaimer <span class="arrow">&rarr;</span></a>
   <a href="#email" onclick="toggleMenu()">Subscribe <span class="arrow">&rarr;</span></a>
 </div>
 
@@ -1069,9 +1373,9 @@ footer a:hover{color:var(--text)}
     </div>
   </div>
   <div class="hero-content">
-    <div class="hero-badge fade-in"><span class="dot"></span>CPA-built &middot; for everyday people</div>
-    <h1 class="fade-in">Copy these prompts.<br>Fix your <em>finances</em>.</h1>
-    <p class="hero-sub fade-in">CPA-built AI prompts you can paste into <strong>ChatGPT</strong> or <strong>Claude</strong> in 60 seconds. No tools to install. No accounts. Just answers.</p>
+    <div class="hero-badge fade-in"><span class="dot"></span>CPA-built &middot; AI finance intelligence</div>
+    <h1 class="fade-in">Smarter insight into your <em>finances</em>.</h1>
+    <p class="hero-sub fade-in">A growing library of AI prompts &mdash; <strong>personal and business</strong> &mdash; that help you better understand your numbers, your spending, and your decisions, right inside ChatGPT or Claude.</p>
     <div class="hero-cta-row fade-in">
       <a href="#featured" class="btn-primary">
         Get the Prompts
@@ -1089,7 +1393,7 @@ footer a:hover{color:var(--text)}
         <div class="hero-strip-lbl">No signup needed</div>
       </div>
       <div class="hero-strip-item">
-        <div class="hero-strip-num">60s</div>
+        <div class="hero-strip-num">Simple</div>
         <div class="hero-strip-lbl">Copy &amp; paste</div>
       </div>
     </div>
@@ -1144,41 +1448,157 @@ footer a:hover{color:var(--text)}
   <div class="container-narrow">
     <div class="section-head fade-in">
       <div class="eyebrow">Featured prompt</div>
-      <h2>The Business <em>Financial System</em></h2>
-      <p class="section-sub">Acts as a CPA, financial analyst, and business advisor. Builds your full P&amp;L, balance sheet, cash flow, savings opportunities, and audit flags &mdash; from your bank statements.</p>
+      <h2>Turn Raw Financial Data Into a Complete <em>Business Intelligence System</em></h2>
+      <p class="section-sub">Upload bank statements or transaction exports into ChatGPT or Claude and generate financial statements, forecasts, savings opportunities, growth analysis, audit flags, and executive dashboards in minutes.</p>
     </div>
 
+    <!-- Feature grid -->
+    <div class="feature-grid fade-in">
+      <div class="feature-tile">
+        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div class="feature-tile-name">Financial Statements</div>
+      </div>
+      <div class="feature-tile">
+        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+        <div class="feature-tile-name">Forecasting</div>
+      </div>
+      <div class="feature-tile">
+        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="feature-tile-name">Savings Analysis</div>
+      </div>
+      <div class="feature-tile">
+        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <div class="feature-tile-name">Growth Opportunities</div>
+      </div>
+      <div class="feature-tile">
+        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+        <div class="feature-tile-name">Audit Detection</div>
+      </div>
+      <div class="feature-tile">
+        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <div class="feature-tile-name">Mobile Dashboard</div>
+      </div>
+      <div class="feature-tile">
+        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+        <div class="feature-tile-name">Excel Export</div>
+      </div>
+      <div class="feature-tile">
+        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div class="feature-tile-name">Business Benchmarking</div>
+      </div>
+    </div>
+
+    <!-- Hero card -->
     <div class="prompt-card featured fade-in">
       <div class="prompt-card-head">
         <div class="prompt-tag-row">
           <span class="prompt-tag featured">&star; Featured</span>
           <span class="prompt-tag">Small Business</span>
+          <span class="prompt-tag">CPA-built</span>
         </div>
-        <div class="prompt-title">Run a CPA on your business</div>
-        <p class="prompt-desc">A single prompt that turns your bank statements into a complete, decision-ready financial analysis with both an HTML dashboard and an Excel workbook.</p>
+        <div class="prompt-title">The Business Financial Intelligence System</div>
+        <p class="prompt-desc">A single prompt that turns your raw transaction data into a complete, decision-ready financial analysis &mdash; statements, forecasts, savings, growth, audit flags &mdash; delivered as both an interactive HTML dashboard and a structured Excel workbook.</p>
       </div>
 
-      <div class="prompt-io">
-        <div class="prompt-io-block needs">
-          <h4>What you need</h4>
-          <ul>
-            <li>Bank or credit card statements</li>
-            <li>Basic business info (entity, state)</li>
-            <li>Owner contributions, loans, draws</li>
-            <li>About 10 minutes</li>
-          </ul>
+      <!-- IO triplet: Upload / Get / Built for -->
+      <div class="io-triplet">
+        <div class="io-block">
+          <h5>What you upload</h5>
+          <div class="io-chips">
+            <span class="io-chip">Bank statements</span>
+            <span class="io-chip">Credit card CSV</span>
+            <span class="io-chip">QuickBooks export</span>
+            <span class="io-chip">Stripe export</span>
+          </div>
         </div>
-        <div class="prompt-io-block gets">
-          <h4>What you get</h4>
-          <ul>
-            <li>Full P&amp;L, balance sheet, cash flow</li>
-            <li>Next-year forecast (3 scenarios)</li>
-            <li>5&ndash;7 savings opportunities</li>
-            <li>HTML dashboard + Excel workbook</li>
-          </ul>
+        <div class="io-block gets">
+          <h5>What you get</h5>
+          <div class="io-chips">
+            <span class="io-chip">P&amp;L</span>
+            <span class="io-chip">Balance Sheet</span>
+            <span class="io-chip">Cash Flow</span>
+            <span class="io-chip">Forecast</span>
+            <span class="io-chip">Savings</span>
+            <span class="io-chip">Growth plan</span>
+            <span class="io-chip">Exec summary</span>
+          </div>
+        </div>
+        <div class="io-block built">
+          <h5>Built for</h5>
+          <div class="io-chips">
+            <span class="io-chip">Small business</span>
+            <span class="io-chip">Freelancers</span>
+            <span class="io-chip">Agencies</span>
+            <span class="io-chip">Service biz</span>
+            <span class="io-chip">E-commerce</span>
+            <span class="io-chip">Startups</span>
+          </div>
         </div>
       </div>
 
+      <!-- KPI preview dashboard -->
+      <div class="kpi-preview">
+        <div class="kpi-preview-head">
+          <div class="kpi-preview-label">Live output preview</div>
+          <div class="kpi-preview-tag">Q1 2026 &middot; Sample</div>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-card-label">Revenue</div>
+            <div class="kpi-card-value">$248,420</div>
+            <div class="kpi-card-delta up">&uarr; 18.2% QoQ</div>
+            <svg class="kpi-card-spark" viewBox="0 0 100 24" preserveAspectRatio="none"><polyline points="0,18 12,15 24,17 36,12 48,13 60,9 72,10 84,5 100,3" fill="none" stroke="#7c6ff7" stroke-width="1.5" opacity="0.7"/></svg>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card-label">Net Income</div>
+            <div class="kpi-card-value">$62,108</div>
+            <div class="kpi-card-delta up">&uarr; 24.1%</div>
+            <svg class="kpi-card-spark" viewBox="0 0 100 24" preserveAspectRatio="none"><polyline points="0,16 12,17 24,12 36,14 48,9 60,11 72,7 84,5 100,4" fill="none" stroke="#3dffa0" stroke-width="1.5" opacity="0.7"/></svg>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card-label">Cash Balance</div>
+            <div class="kpi-card-value">$94,750</div>
+            <div class="kpi-card-delta up">&uarr; $12.4k</div>
+            <svg class="kpi-card-spark" viewBox="0 0 100 24" preserveAspectRatio="none"><polyline points="0,14 12,12 24,14 36,11 48,8 60,9 72,6 84,7 100,4" fill="none" stroke="#38d9f5" stroke-width="1.5" opacity="0.7"/></svg>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card-label">Profit Margin</div>
+            <div class="kpi-card-value">25.0%</div>
+            <div class="kpi-card-delta up">&uarr; 1.4 pts</div>
+            <svg class="kpi-card-spark" viewBox="0 0 100 24" preserveAspectRatio="none"><polyline points="0,15 12,16 24,13 36,14 48,11 60,12 72,9 84,8 100,7" fill="none" stroke="#e7c989" stroke-width="1.5" opacity="0.7"/></svg>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card-label">Savings Found</div>
+            <div class="kpi-card-value">$8,460</div>
+            <div class="kpi-card-delta up">&uarr; 7 items</div>
+            <svg class="kpi-card-spark" viewBox="0 0 100 24" preserveAspectRatio="none"><polyline points="0,17 12,14 24,16 36,11 48,12 60,8 72,9 84,5 100,4" fill="none" stroke="#3dffa0" stroke-width="1.5" opacity="0.7"/></svg>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card-label">Growth Upside</div>
+            <div class="kpi-card-value">+$36k</div>
+            <div class="kpi-card-delta up">&uarr; 14.5% TAM</div>
+            <svg class="kpi-card-spark" viewBox="0 0 100 24" preserveAspectRatio="none"><polyline points="0,18 12,16 24,14 36,12 48,11 60,8 72,6 84,5 100,2" fill="none" stroke="#7c6ff7" stroke-width="1.5" opacity="0.7"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Meta row -->
+      <div class="prompt-meta-row">
+        <div class="prompt-meta">
+          <div class="prompt-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="prompt-meta-text"><strong>~10 minutes</strong><span>Estimated runtime</span></div>
+        </div>
+        <div class="prompt-meta">
+          <div class="prompt-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+          <div class="prompt-meta-text"><strong>ChatGPT &middot; Claude</strong><span>Best used with</span></div>
+        </div>
+        <div class="prompt-meta">
+          <div class="prompt-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <div class="prompt-meta-text"><strong>CSV &middot; PDF &middot; XLSX</strong><span>Recommended files</span></div>
+        </div>
+      </div>
+
+      <!-- Copy bar -->
       <div class="prompt-copy-bar">
         <div class="copy-label">Works in <b>ChatGPT</b> or <b>Claude</b></div>
         <button class="copy-btn" onclick="copyPrompt('flagshipPrompt', this)">
@@ -1187,6 +1607,7 @@ footer a:hover{color:var(--text)}
         </button>
       </div>
 
+      <!-- Toggle prompt body -->
       <button class="prompt-toggle" onclick="togglePrompt(this, 'flagshipBody')">
         <span>View full prompt</span>
         <span class="chev"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -1197,253 +1618,375 @@ footer a:hover{color:var(--text)}
 ────────────────────────────────────────
 CRITICAL — STANDALONE ANALYSIS ONLY
 ────────────────────────────────────────
+
 - Do NOT reference previous chats or memory
 - Do NOT assume prior knowledge
 - Use ONLY:
   • Files uploaded in THIS request
   • Answers provided in THIS request
+
 If information is missing:
 - Ask OR make a clearly stated assumption
+
 This analysis must stand completely on its own.
 
 ────────────────────────────────────────
 OBJECTIVE
 ────────────────────────────────────────
+
 Your job is to:
 1. Collect simple business inputs
-2. Process financial data
-3. Build COMPLETE financial statements
-4. Identify risks AND savings opportunities
-5. Deliver BOTH:
-   - A professional, interactive HTML financial dashboard
-   - A structured Excel workbook for analysis
+2. Understand the EXACT analysis period
+3. Process financial data
+4. Build COMPLETE financial statements
+5. Identify risks AND optimization opportunities
+6. Deliver BOTH:
+   - A responsive interactive HTML dashboard (viewable on both desktop and mobile)
+   - A structured Excel workbook
+
 This is decision-ready financial analysis.
 
 ────────────────────────────────────────
 STEP 1 — REQUIRED QUESTIONS (MANDATORY)
 ────────────────────────────────────────
+
 Ask the user these EXACT questions in plain English.
-Do NOT reword them. Do NOT make them more technical.
-You are NOT allowed to proceed until ALL 10 are answered clearly.
-If anything is unclear:
-- Ask a simple follow-up
-- If user says "not sure," make a reasonable assumption and clearly state it
+Do NOT reword them.
+
+You are NOT allowed to proceed until ALL questions are answered clearly.
+
+If unclear:
+- Ask simple follow-up
+- If user says “not sure,” make a reasonable assumption and clearly state it
 
 QUESTIONS:
-1. What is the name of your business and what state is it in?
-2. What type of business do you have? (Sole Owner, LLC, S-Corp, Corporation — or "not sure")
-3. When did you start your business?
-4. Did you put any of your own money into the business? How much and when?
-5. Did you borrow any money (loan or credit line)? How much available and how much used?
-6. Did you buy any big items over $500? What, how much, and when?
-7. Do you pay rent? How much per month?
-8. Did you pay anyone to work for you? About how much total?
-9. Did you pay any freelancers or independent workers? Who and how much?
-10. Did you take money out of the business for yourself? About how much total?
 
-After answers:
-- Summarize ALL inputs clearly
-- State ANY assumptions made
+1. What is the name of your business and what state is it in?
+
+2. What type of business do you have?
+(Sole Owner, LLC, S-Corp, Corporation — or “not sure”)
+
+3. What time period should be analyzed?
+(Examples: Full Year 2025, Q1 2026, Jan–Mar 2026, Trailing 12 Months)
+
+4. What future period should be forecasted or budgeted?
+(Examples: Full Year 2026, Q2 2026, Next 12 Months)
+
+5. When did you start your business?
+
+6. Did you put any of your own money into the business? How much and when?
+
+7. Did you borrow any money (loan or credit line)? How much available and how much used?
+
+8. Did you buy any big items over $500? What, how much, and when?
+
+9. Do you pay rent? How much per month?
+
+10. Did you pay anyone to work for you? About how much total?
+
+11. Did you pay any freelancers or independent workers? Who and how much?
+
+12. Did you take money out of the business for yourself? About how much total?
+
+After:
+- Summarize ALL inputs
+- Clearly identify:
+  • Analysis period
+  • Forecast period
+- State assumptions
 - THEN proceed
 
 ────────────────────────────────────────
-STEP 2 — DATA PROCESSING
+STEP 2 — PERIOD DETECTION &amp; DATA VALIDATION
 ────────────────────────────────────────
-Using ONLY provided inputs:
+
+You MUST determine:
+
+- What dates exist in the uploaded data
+- Whether the uploaded data fully covers the requested analysis period
+- Whether the data is:
+  • Full year
+  • Partial year
+  • Quarterly
+  • Monthly
+  • Rolling / trailing period
+
+If the uploaded data does NOT fully match the requested period:
+- Clearly state the mismatch
+- Make reasonable assumptions if needed
+- Label assumptions clearly
+
+DO NOT assume calendar year unless explicitly supported.
+
+ALL labels, tables, charts, and commentary MUST dynamically reflect the actual analysis period.
+
+Examples:
+- “Q1 2026 Profit &amp; Loss”
+- “Trailing 12 Month Revenue”
+- “Jan–Mar 2026 Cash Flow”
+
+Do NOT hardcode:
+- “2025”
+- “Annual”
+- “Jan–Dec”
+unless that is actually the uploaded period.
+
+────────────────────────────────────────
+STEP 3 — DATA PROCESSING
+────────────────────────────────────────
+
 - Categorize ALL transactions
 - Separate:
   • Revenue
   • Expenses
   • Owner activity
   • Financing activity
-Identify and flag:
+
+Flag:
 - Duplicates
 - Missing data
 - Suspicious transactions
-Do NOT guess silently.
+
+No silent guessing.
 
 ────────────────────────────────────────
-STEP 3 — OUTPUT (HTML + EXCEL REQUIRED)
+STEP 4 — OUTPUT (HTML + EXCEL REQUIRED)
 ────────────────────────────────────────
+
 You MUST produce:
-1. INTERACTIVE HTML FINANCIAL DASHBOARD
-2. EXCEL WORKBOOK
-Both REQUIRED.
+
+1. MOBILE-OPTIMIZED HTML DASHBOARD  
+2. EXCEL WORKBOOK  
+
+Both required.
 
 ────────────────────────────────────────
-OUTPUT STYLE (CRITICAL)
+CORE OUTPUT STYLE
 ────────────────────────────────────────
-- Be concise
-- Use simple, plain English
-- Avoid long paragraphs
-Prefer:
-• Charts
-• Tables
-• KPI cards
-• Bullet points
+
+- Prioritize VISUALS over text
+- Use charts, KPI cards, and tables first
+- Use text ONLY where necessary
+- Keep writing concise
+
 RULE:
-If something can be visual → show it instead of writing long text
+If something can be visual → do NOT write a paragraph
 
 ────────────────────────────────────────
-HTML DASHBOARD REQUIREMENTS
+RESPONSIVE DESIGN REQUIREMENTS
 ────────────────────────────────────────
-The dashboard must:
-- Be fully self-contained (single HTML file)
-- Use a clean, modern layout
-- Use a dark or neutral background with clear contrast
-- Be mobile-friendly and responsive
-- Include tab or section navigation
 
-REQUIRED SECTIONS:
-1. Executive Summary
-2. Profit & Loss
-3. Balance Sheet
-4. Cash Flow
-5. Budget / Forecast (next year)
-6. Savings Opportunities
-7. Audit Flags & Insights
+The HTML dashboard MUST:
+
+- Be fully responsive across desktop, tablet, and phone screens
+- Use vertical stacking layout on narrow screens, multi-column on wider screens
+- Avoid wide tables requiring horizontal scrolling on small screens
+- Use card-based sections that adapt to viewport width
+- Resize charts properly on all screen sizes
 
 ────────────────────────────────────────
-EXECUTIVE SUMMARY
+HTML DASHBOARD STRUCTURE
 ────────────────────────────────────────
-- 5–7 bullet points MAX
-- Plain English only
-- No jargon
-Must explain:
-- Total revenue
-- Total profit
-- Cash position
-- Overall business health
-- Top 3 takeaways
-Include KPI-style metrics if possible.
+
+Sections:
+
+1. Executive Summary  
+2. Profit &amp; Loss  
+3. Balance Sheet  
+4. Cash Flow  
+5. Forecast / Budget  
+6. Savings &amp; Growth Opportunities  
+7. Audit Flags  
 
 ────────────────────────────────────────
-PROFIT & LOSS (MONTHLY + FULL YEAR)
+EXECUTIVE SUMMARY (VISUAL-FIRST)
 ────────────────────────────────────────
-- Columns:
-  Jan–Dec + "Total — Full Year [Year]"
+
+Use:
+- KPI cards
+- Small charts
+- Minimal text
+
 Include:
-- Revenue categories
-- Expense categories
-- Gross Profit
-- Net Income
-- Profit Margin %
+- Revenue
+- Net income
+- Cash position
+- Profit margin
+- Top takeaways
+
+Limit commentary to:
+- 3–5 concise bullets
+
+────────────────────────────────────────
+PROFIT &amp; LOSS
+────────────────────────────────────────
+
+Build the P&amp;L ONLY for the requested analysis period.
+
+Examples:
+- Full Year
+- Quarter
+- Monthly period
+- Trailing period
+
+DO NOT force annual formatting.
+
+If full-year:
+- Show annual P&amp;L
+
+If quarterly/monthly:
+- Show ONLY the requested period
+
 MANDATORY:
-- Total column MUST equal sum of monthly columns
-- Net Income MUST tie EXACTLY to:
-  • Annual totals
+- Net Income must tie EXACTLY to:
   • Balance Sheet
   • Cash Flow
-If mismatch:
-→ STOP and fix
-Include:
-- 3 concise insights
+
+Keep visual and concise.
 
 ────────────────────────────────────────
 BALANCE SHEET
 ────────────────────────────────────────
+
 ASSETS = LIABILITIES + EQUITY
+
 MANDATORY:
 - Show totals
 - Show difference
-- Explicitly confirm equality
-If not balanced:
-→ STOP and fix
+- Confirm equality
 
 ────────────────────────────────────────
 CASH FLOW
 ────────────────────────────────────────
+
 Include:
 - Operating
 - Investing
 - Financing
-MANDATORY:
-- Must tie EXACTLY to change in cash
+
+Must tie EXACTLY to cash movement.
 
 ────────────────────────────────────────
-BUDGET / FORECAST (NEXT YEAR)
+FORECAST / BUDGET
 ────────────────────────────────────────
-Create projections based on historical data.
+
+Build forecasts ONLY for the requested forecast period.
+
+Examples:
+- Full Year 2026
+- Q2 2026
+- Next 12 Months
+
+Use historical trends from uploaded data.
+
 Include:
-- Monthly revenue
-- Monthly expenses
-- Net income
-- Full-year totals
+- Revenue projections
+- Expense projections
+- Profit projections
+
 Include 3 scenarios:
 - Conservative
 - Base Case
 - Aggressive
-Include:
-- Table
-- Chart
-- 3–5 concise insights
+
+Use:
+- Charts
+- Tables
+- Minimal commentary
 
 ────────────────────────────────────────
-SAVINGS OPPORTUNITIES
+SAVINGS &amp; GROWTH OPPORTUNITIES
 ────────────────────────────────────────
-Identify 5–7 opportunities to reduce costs.
-Each must include:
-- What is happening
-- Why it is inefficient
-- What to do
-- Estimated annual savings
-Must be based on:
-- Actual spending patterns
-- General market benchmarks
-No generic advice.
+
+Perform detailed optimization analysis using:
+- Actual financial data
+- Industry benchmarks
+- Similar business patterns
+
+────────────────────
+PART 1 — SAVINGS
+────────────────────
+
+Identify:
+- Expense reduction opportunities
+- Tax savings
+- Vendor inefficiencies
+- Cash leakage
+
+Include:
+- Estimated savings ranges
+
+────────────────────
+PART 2 — GROWTH
+────────────────────
+
+Identify:
+- Revenue growth opportunities
+- Pricing opportunities
+- Capacity/utilization improvements
+- Recurring revenue opportunities
+
+Include:
+- Estimated revenue upside
+
+────────────────────
+PART 3 — IMPACT
+────────────────────
+
+Summarize:
+- Total savings opportunity
+- Total revenue upside
+- Estimated profitability improvement
 
 ────────────────────────────────────────
 AUDIT FLAGS
 ────────────────────────────────────────
+
 Identify:
 - Uncategorized transactions
 - Duplicates
 - Suspicious spending
-- Risk areas
-Provide:
-- 3–5 actions
+
+Keep concise.
 
 ────────────────────────────────────────
-EXCEL WORKBOOK REQUIREMENTS
+EXCEL WORKBOOK
 ────────────────────────────────────────
+
 Tabs:
 1. Raw Transactions
 2. Chart of Accounts
-3. Monthly P&L
-4. Annual P&L
-5. Balance Sheet
-6. Cash Flow
-7. Audit Flags
-8. Insights
-9. Budget / Forecast
-10. Savings Opportunities
+3. Profit &amp; Loss
+4. Balance Sheet
+5. Cash Flow
+6. Audit Flags
+7. Forecast / Budget
+8. Savings &amp; Growth
 
-Rules:
-- Clean formatting
-- No merged cells
-- Numeric values only
-- Currency format: $1,234.56
-- Must match HTML output
+Must dynamically reflect the requested periods.
 
 ────────────────────────────────────────
-CHARTS / GRAPHICS (CRITICAL)
+CHARTS / GRAPHICS
 ────────────────────────────────────────
-All charts MUST work in a browser.
-- Use valid JavaScript only
-- No Python / NumPy / pandas syntax
-- All datasets must be plain numbers
-If chart cannot be guaranteed:
+
+- Must use valid JavaScript only
+- No Python / pandas / NumPy syntax
+- Charts must render correctly on all screen sizes (desktop and mobile)
+
+If chart may break:
 → use table instead
 
 ────────────────────────────────────────
 STRICT RULES
 ────────────────────────────────────────
-- Standalone analysis ONLY
+
+- Standalone only
 - No external context
 - No silent assumptions
-- HTML + Excel BOTH required
+- Mobile-first
+- Visual-first
 - Charts must work
-- Keep output concise
+- Excel must tie to HTML
 - No placeholders
 - No partial outputs</div>
       </div>
@@ -1826,22 +2369,121 @@ STYLE:
   </div>
 </footer>
 
+<!-- DISCLAIMER GATE MODAL -->
+<div class="disclaimer-modal" id="disclaimerModal" role="dialog" aria-modal="true" aria-labelledby="disclaimerModalTitle" aria-hidden="true">
+  <div class="disclaimer-modal-card" role="document">
+    <div class="disclaimer-modal-glow" aria-hidden="true"></div>
+    <div class="disclaimer-modal-icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+      </svg>
+    </div>
+    <div class="disclaimer-modal-eyebrow">Before you copy</div>
+    <h3 class="disclaimer-modal-title" id="disclaimerModalTitle">Quick acknowledgment</h3>
+    <div class="disclaimer-modal-body">
+      <p>AI-generated financial information may contain errors and should not be relied upon as accounting, tax, legal, investment, or financial advice.</p>
+      <p>All outputs must be independently reviewed and verified by a qualified professional before making decisions.</p>
+      <p>By continuing, you acknowledge that you are using these prompts at your own risk and no liability is assumed for actions taken based on AI-generated outputs.</p>
+    </div>
+    <div class="disclaimer-modal-actions">
+      <button type="button" class="disclaimer-modal-cancel" onclick="cancelDisclaimer()">Cancel</button>
+      <button type="button" class="disclaimer-modal-agree" id="disclaimerAgreeBtn" onclick="agreeDisclaimer()">
+        I Understand &amp; Agree
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+    </div>
+    <div class="disclaimer-modal-foot"><a href="#disclaimer" onclick="cancelDisclaimer()">Read the full disclaimer &rarr;</a></div>
+  </div>
+</div>
+
 <script>
-function copyPrompt(id, btn){
+/* ========== DISCLAIMER GATE ========== */
+/* Modal is shown EVERY time the user clicks "Copy Prompt" or "View full prompt".
+   Acknowledgment is per-action and is NOT persisted across clicks. */
+
+let pendingAction = null; // {type: 'copy'|'view', id, btn, bodyId}
+
+function openDisclaimerModal(){
+  const m = document.getElementById('disclaimerModal');
+  if (!m) return;
+  m.classList.add('open');
+  m.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  // focus the primary button
+  setTimeout(() => {
+    const btn = document.getElementById('disclaimerAgreeBtn');
+    if (btn) btn.focus();
+  }, 50);
+}
+function closeDisclaimerModal(){
+  const m = document.getElementById('disclaimerModal');
+  if (!m) return;
+  m.classList.remove('open');
+  m.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+function cancelDisclaimer(){
+  pendingAction = null;
+  closeDisclaimerModal();
+}
+function agreeDisclaimer(){
+  closeDisclaimerModal();
+  if (pendingAction){
+    const action = pendingAction;
+    pendingAction = null;
+    if (action.type === 'copy'){
+      executeCopy(action.id, action.btn);
+    } else if (action.type === 'view'){
+      executeTogglePrompt(action.btn, action.bodyId);
+    }
+  }
+}
+
+function executeCopy(id, btn){
   const text = document.getElementById(id).innerText;
   navigator.clipboard.writeText(text).then(() => {
     const orig = btn.innerHTML;
     btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
     btn.classList.add('copied');
     setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2400);
+  }).catch(() => {
+    // fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch(e){}
+    document.body.removeChild(ta);
+    const orig = btn.innerHTML;
+    btn.innerHTML = 'Copied!';
+    setTimeout(() => { btn.innerHTML = orig; }, 2000);
   });
 }
-function togglePrompt(btn, bodyId){
+
+function copyPrompt(id, btn){
+  // Always show the disclaimer first — no persistence.
+  pendingAction = {type:'copy', id, btn};
+  openDisclaimerModal();
+}
+
+/* ========== EXISTING UI ========== */
+function executeTogglePrompt(btn, bodyId){
   const body = document.getElementById(bodyId);
   body.classList.toggle('open');
   btn.classList.toggle('open');
   const label = btn.querySelector('span:first-child');
   if (label) label.textContent = body.classList.contains('open') ? 'Hide full prompt' : 'View full prompt';
+}
+function togglePrompt(btn, bodyId){
+  const body = document.getElementById(bodyId);
+  // If it's already open, allow user to close it without re-confirming.
+  if (body.classList.contains('open')){
+    executeTogglePrompt(btn, bodyId);
+    return;
+  }
+  // Opening the full prompt requires fresh disclaimer acknowledgment every time.
+  pendingAction = {type:'view', btn, bodyId};
+  openDisclaimerModal();
 }
 function toggleMenu(){
   document.getElementById('mobileMenu').classList.toggle('open');
@@ -1884,6 +2526,20 @@ document.addEventListener('click', (e) => {
   const ham = document.getElementById('hamburger');
   if (menu.classList.contains('open') && !menu.contains(e.target) && !ham.contains(e.target)){
     menu.classList.remove('open');
+  }
+});
+
+// Modal: close on backdrop click + ESC
+document.addEventListener('click', (e) => {
+  const m = document.getElementById('disclaimerModal');
+  if (m && m.classList.contains('open') && e.target === m){
+    cancelDisclaimer();
+  }
+});
+document.addEventListener('keydown', (e) => {
+  const m = document.getElementById('disclaimerModal');
+  if (e.key === 'Escape' && m && m.classList.contains('open')){
+    cancelDisclaimer();
   }
 });
 </script>
