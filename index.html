@@ -2058,12 +2058,12 @@ STRICT RULES
       <p class="section-sub">More AI systems for personal finance and high-stakes decisions.</p>
     </div>
     <div class="lib-grid">
-      <!-- Spending Analyzer -->
+      <!-- Credit Card Spend Analyzer -->
       <div class="prompt-card fade-in">
         <div class="prompt-card-head">
           <div class="prompt-tag-row"><span class="prompt-tag">Personal Finance</span></div>
-          <div class="prompt-title">Spending Analyzer</div>
-          <p class="prompt-desc">Drop in a credit card statement. Get categorized spend, hidden subscriptions, merchant flags, and a clear picture of where your money actually went.</p>
+          <div class="prompt-title">Credit Card Spend Analyzer</div>
+          <p class="prompt-desc">Paste your credit card transactions. Get a full credit card spending breakdown &mdash; categorized spend, hidden subscriptions, merchant flags, and exactly where your card was used.</p>
         </div>
         <div class="prompt-io">
           <div class="prompt-io-block needs">
@@ -2094,7 +2094,7 @@ STRICT RULES
           <span class="chev"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
         </button>
         <div class="prompt-body" id="ccBody">
-          <div class="prompt-box" id="ccPrompt">You are an expert personal finance analyst. I'm going to give you my credit card transaction data for the past month (or more).
+          <div class="prompt-box" id="ccPrompt">You are an expert personal finance analyst running a CREDIT CARD SPEND ANALYZER. I'm going to give you my credit card transaction data for the past month (or more).
 
 Your job is to read it carefully and produce a clean, professional, easy-to-understand financial report based ONLY on what you see in the data.
 
@@ -2112,6 +2112,137 @@ STYLE:
 - Concise, no fluff
 - Charts/tables over paragraphs
 - Plain English
+
+--------------------------------------------------
+RESPONSIVE DESIGN REQUIREMENTS
+--------------------------------------------------
+The HTML report MUST work beautifully on BOTH:
+- mobile browsers
+- desktop/laptop browsers
+The layout must intelligently adapt between:
+1. mobile-first vertical viewing
+2. desktop executive dashboard viewing
+The report should feel:
+- premium on desktop
+- highly readable on mobile
+--------------------------------------------------
+MOBILE EXPERIENCE
+--------------------------------------------------
+On mobile:
+- use stacked cards
+- use vertical layouts
+- use swipe-friendly spacing
+- prioritize readability
+- avoid horizontal scrolling
+- simplify dense sections
+- use larger tap-friendly spacing
+Optimize mobile for:
+390px width.
+The mobile experience should feel:
+- clean
+- modern
+- easy to consume
+- TikTok/Reels friendly
+--------------------------------------------------
+DESKTOP EXPERIENCE
+--------------------------------------------------
+On desktop:
+- expand into multi-column layouts
+- use dashboard-style grids
+- increase whitespace
+- create more visual hierarchy
+- allow charts to breathe
+- use wider analytics sections
+- create executive-dashboard aesthetics
+Desktop should feel like:
+- a premium SaaS analytics platform
+- a fintech executive dashboard
+- a professional intelligence platform
+NOT:
+- a stretched mobile app
+--------------------------------------------------
+RESPONSIVE LAYOUT RULES
+--------------------------------------------------
+Use responsive breakpoints.
+Mobile:
+- single-column layouts
+- stacked cards
+- vertically prioritized flow
+Tablet:
+- 2-column adaptive grids
+Desktop:
+- multi-column dashboard layouts
+- wider chart sections
+- side-by-side analytics cards
+The layout should automatically adapt using:
+- CSS media queries
+- flexible grids
+- responsive typography
+- scalable chart containers
+--------------------------------------------------
+CHART & TABLE REQUIREMENTS
+--------------------------------------------------
+Charts must:
+- resize responsively
+- remain readable on mobile
+- expand elegantly on desktop
+- avoid clipping or overflow
+Tables must:
+- collapse intelligently on mobile
+- avoid horizontal overflow
+- use scroll containers ONLY if necessary
+- prioritize readability over density
+If a table becomes too large:
+- convert it into visual cards on mobile
+--------------------------------------------------
+TYPOGRAPHY SCALING
+--------------------------------------------------
+Typography must scale dynamically.
+Mobile:
+- concise
+- compact
+- highly readable
+Desktop:
+- larger hero metrics
+- more breathing room
+- stronger hierarchy
+Avoid:
+- giant oversized mobile fonts on desktop
+- tiny unreadable desktop fonts on mobile
+--------------------------------------------------
+VISUAL BALANCE
+--------------------------------------------------
+Desktop should contain:
+- more spacing
+- wider layouts
+- stronger grid systems
+- cleaner alignment
+- executive dashboard feel
+Mobile should contain:
+- tighter sections
+- stacked visuals
+- simplified hierarchy
+- faster readability
+Both experiences should feel:
+- intentional
+- polished
+- premium
+--------------------------------------------------
+TECHNICAL HTML REQUIREMENTS
+--------------------------------------------------
+The HTML must:
+- be fully self-contained
+- use embedded CSS only
+- use responsive CSS media queries
+- support modern browsers
+- avoid layout breaking
+- avoid fixed-width containers
+- avoid viewport overflow
+- scale properly on Retina displays
+The final HTML should look:
+- incredible on a phone
+- incredible on a desktop monitor
+- presentation-ready on both
 
 Now analyze the data.</div>
         </div>
