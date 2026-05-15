@@ -243,11 +243,11 @@ nav.topnav{
    ============================ */
 .section-divider{
   position:relative;
-  height:120px;
+  height:60px;
   display:flex;align-items:center;justify-content:center;
   z-index:1;pointer-events:none;
 }
-@media(max-width:640px){.section-divider{height:80px}}
+@media(max-width:640px){.section-divider{height:44px}}
 .section-divider::before{
   content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   width:90%;max-width:760px;height:1px;
@@ -274,7 +274,7 @@ nav.topnav{
 /* ============================
    SECTION HEAD
    ============================ */
-.section-head{margin-bottom:36px}
+.section-head{margin-bottom:24px}
 .section-head.center{text-align:center}
 .eyebrow{
   display:inline-flex;align-items:center;gap:8px;
@@ -299,8 +299,8 @@ h2 em{
 .section-sub{color:var(--text-dim);font-size:0.98rem;line-height:1.65;max-width:560px}
 .section-head.center .section-sub{margin:0 auto}
 
-section{padding:80px 0;position:relative}
-@media(max-width:640px){section{padding:56px 0}}
+section{padding:48px 0;position:relative}
+@media(max-width:640px){section{padding:36px 0}}
 
 /* ============================
    HERO
@@ -309,7 +309,7 @@ section{padding:80px 0;position:relative}
   min-height:100svh;
   min-height:100vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:calc(var(--nav-h) + 60px) 22px 100px;
+  padding:calc(var(--nav-h) + 60px) 22px 70px;
   text-align:center;
   position:relative;
   overflow:hidden;
@@ -530,16 +530,6 @@ h1 em::after{
   transition:transform .35s, box-shadow .35s;
 }
 .prompt-card:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(124,111,247,0.16), 0 40px 80px rgba(0,0,0,0.55)}
-.prompt-card.featured::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent 0%,var(--purple) 30%,var(--cyan) 70%,transparent 100%);
-  z-index:1;
-}
-.prompt-card.featured::after{
-  content:'';position:absolute;top:0;right:0;width:200px;height:200px;
-  background:radial-gradient(circle at top right, rgba(124,111,247,0.15) 0%, transparent 70%);
-  pointer-events:none;
-}
 .prompt-card-head{padding:24px 22px 0;position:relative;z-index:1}
 @media(min-width:640px){.prompt-card-head{padding:30px 30px 0}}
 .prompt-tag-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
@@ -549,9 +539,6 @@ h1 em::after{
   border:1px solid rgba(124,111,247,0.22);
   padding:4px 9px;border-radius:5px;letter-spacing:0.08em;
   text-transform:uppercase;font-weight:600;
-}
-.prompt-tag.featured{
-  color:var(--cyan);background:rgba(56,217,245,0.08);border-color:rgba(56,217,245,0.32);
 }
 .prompt-title{
   font-family:'Syne',sans-serif;font-weight:700;
@@ -645,24 +632,105 @@ h1 em::after{
 .prompt-box::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:3px}
 
 /* ============================
-   FEATURED — special section
+   LIBRARY (unified prompt section, formerly split between Featured + Library)
    ============================ */
-#featured{
-  padding:96px 0;
+#library{
+  padding:56px 0;
   background:radial-gradient(ellipse at 50% 30%, rgba(124,111,247,0.05) 0%, transparent 60%);
 }
+@media(max-width:640px){#library{padding:40px 0}}
 
-/* ============================
-   LIBRARY
-   ============================ */
-.lib-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.lib-grid{display:grid;grid-template-columns:1fr;gap:22px}
+
+/* Table of Contents */
+.prompt-toc{
+  background:linear-gradient(180deg,var(--panel) 0%,rgba(13,16,25,0.6) 100%);
+  border:1px solid var(--line-2);
+  border-radius:14px;
+  padding:18px 18px 14px;
+  margin-bottom:30px;
+  position:relative;overflow:hidden;
+}
+@media(min-width:600px){.prompt-toc{padding:22px 24px 18px}}
+.prompt-toc::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(124,111,247,0.4),transparent);
+}
+.prompt-toc-head{
+  display:flex;align-items:center;gap:10px;
+  padding-bottom:12px;margin-bottom:12px;
+  border-bottom:1px solid var(--line);
+}
+.prompt-toc-icon{
+  width:30px;height:30px;border-radius:8px;
+  background:rgba(124,111,247,0.12);
+  border:1px solid rgba(124,111,247,0.28);
+  display:grid;place-items:center;color:var(--purple-2);
+  flex-shrink:0;
+}
+.prompt-toc-label{
+  font-family:'JetBrains Mono',monospace;font-size:0.68rem;
+  color:var(--purple-2);letter-spacing:0.14em;text-transform:uppercase;font-weight:600;
+}
+.prompt-toc-list{
+  list-style:none;
+  display:grid;grid-template-columns:1fr;gap:2px;
+}
+@media(min-width:640px){.prompt-toc-list{grid-template-columns:1fr 1fr;gap:4px 18px}}
+.prompt-toc-list li{margin:0}
+.prompt-toc-list a{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 8px;border-radius:7px;
+  text-decoration:none;color:var(--text);
+  font-size:0.9rem;line-height:1.35;
+  transition:background .2s, color .2s;
+  border:1px solid transparent;
+}
+.prompt-toc-list a:hover{
+  background:rgba(124,111,247,0.06);
+  border-color:rgba(124,111,247,0.18);
+  color:var(--purple-2);
+}
+.prompt-toc-num{
+  width:22px;height:22px;border-radius:6px;
+  background:rgba(124,111,247,0.1);
+  border:1px solid rgba(124,111,247,0.24);
+  display:grid;place-items:center;flex-shrink:0;
+  font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:600;
+  color:var(--purple-2);
+}
+.prompt-toc-text{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.prompt-toc-name{font-weight:500;letter-spacing:-0.005em}
+.prompt-toc-tag{
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+  color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;
+}
+.prompt-toc-arrow{color:var(--muted);flex-shrink:0;opacity:0.5;transition:opacity .2s, transform .2s}
+.prompt-toc-list a:hover .prompt-toc-arrow{opacity:1;transform:translateX(2px);color:var(--purple-2)}
+
+/* Prompt number badge on each card */
+.prompt-number-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;border-radius:7px;
+  background:linear-gradient(135deg,rgba(124,111,247,0.2),rgba(124,111,247,0.06));
+  border:1px solid rgba(124,111,247,0.32);
+  font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;
+  color:var(--purple-2);
+  margin-right:10px;flex-shrink:0;
+  box-shadow:0 0 0 3px rgba(124,111,247,0.06);
+}
+.prompt-title-row{
+  display:flex;align-items:center;gap:0;
+  margin-bottom:10px;
+}
+.prompt-title-row .prompt-title{margin-bottom:0;flex:1}
 
 /* ============================
    PRIVACY SECTION
    ============================ */
 #privacy{
   background:linear-gradient(180deg, transparent 0%, rgba(8,10,18,0.55) 25%, rgba(8,10,18,0.55) 75%, transparent 100%);
-  padding:96px 0;
+  padding:56px 0;
 }
 .privacy-grid{
   display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:24px;
@@ -1272,7 +1340,7 @@ h1 em::after{
 /* ============================
    EMAIL
    ============================ */
-#email{padding:80px 0}
+#email{padding:48px 0}
 .email-shell{
   background:linear-gradient(180deg,var(--panel) 0%,rgba(13,16,25,0.7) 100%);
   border:1px solid var(--line-2);
@@ -1316,7 +1384,7 @@ h1 em::after{
 /* ============================
    SOCIAL
    ============================ */
-#social{padding:60px 0 40px}
+#social{padding:36px 0 28px}
 .social-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .social-link{
   display:inline-flex;align-items:center;gap:10px;
@@ -1392,20 +1460,18 @@ footer a:hover{color:var(--text)}
   <a href="#hero" class="logo"><span class="logo-mark"><span>D</span></span> The AI Don</a>
   <ul class="nav-links">
     <li><a href="#how">How it works</a></li>
-    <li><a href="#featured">Featured</a></li>
-    <li><a href="#library">Library</a></li>
+    <li><a href="#library">Prompt Library</a></li>
     <li><a href="#disclaimer">Disclaimer</a></li>
     <li><a href="#privacy">Privacy</a></li>
     <li><a href="#about">About</a></li>
   </ul>
   <div class="nav-right">
-    <a href="#featured" class="nav-cta">Get the Prompts</a>
+    <a href="#library" class="nav-cta">Get the Prompts</a>
     <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()" id="hamburger"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#how" onclick="toggleMenu()">How it works <span class="arrow">&rarr;</span></a>
-  <a href="#featured" onclick="toggleMenu()">Featured prompt <span class="arrow">&rarr;</span></a>
   <a href="#library" onclick="toggleMenu()">Prompt library <span class="arrow">&rarr;</span></a>
   <a href="#disclaimer" onclick="toggleMenu()">Disclaimer <span class="arrow">&rarr;</span></a>
   <a href="#privacy" onclick="toggleMenu()">Data privacy <span class="arrow">&rarr;</span></a>
@@ -1429,7 +1495,7 @@ footer a:hover{color:var(--text)}
     <h1 class="fade-in">Smarter insight into your <em>finances</em>.</h1>
     <p class="hero-sub fade-in">A growing library of AI prompts &mdash; <strong>personal and business</strong> &mdash; that help you better understand your numbers, your spending, and your decisions, right inside ChatGPT or Claude.</p>
     <div class="hero-cta-row fade-in">
-      <a href="#featured" class="btn-primary">
+      <a href="#library" class="btn-primary">
         Get the Prompts
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
@@ -1495,61 +1561,315 @@ footer a:hover{color:var(--text)}
 <!-- DIVIDER -->
 <div class="section-divider"><div class="divider-mark"></div></div>
 
-<!-- FEATURED -->
-<section id="featured">
+<!-- PROMPT LIBRARY (unified) -->
+<section id="library">
   <div class="container-narrow">
     <div class="section-head fade-in">
-      <div class="eyebrow">Featured prompt</div>
-      <h2>Turn Raw Financial Data Into a Complete <em>Business Intelligence System</em></h2>
-      <p class="section-sub">Upload bank statements or transaction exports into ChatGPT or Claude and generate financial statements, forecasts, savings opportunities, growth analysis, audit flags, and executive dashboards in minutes.</p>
+      <div class="eyebrow">Prompt library</div>
+      <h2>CPA-built prompts. <em>Free to copy.</em></h2>
+      <p class="section-sub">A growing collection of AI prompts for personal finance, small business analysis, real estate decisions, and analytical integrity. Pick one below and jump straight to it.</p>
     </div>
 
-    <!-- Feature grid -->
-    <div class="feature-grid fade-in">
-      <div class="feature-tile">
-        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-        <div class="feature-tile-name">Financial Statements</div>
+    <!-- TABLE OF CONTENTS -->
+    <nav class="prompt-toc fade-in" aria-label="Prompt library table of contents">
+      <div class="prompt-toc-head">
+        <div class="prompt-toc-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </div>
+        <div class="prompt-toc-label">Jump to a prompt</div>
       </div>
-      <div class="feature-tile">
-        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
-        <div class="feature-tile-name">Forecasting</div>
-      </div>
-      <div class="feature-tile">
-        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-        <div class="feature-tile-name">Savings Analysis</div>
-      </div>
-      <div class="feature-tile">
-        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-        <div class="feature-tile-name">Growth Opportunities</div>
-      </div>
-      <div class="feature-tile">
-        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
-        <div class="feature-tile-name">Audit Detection</div>
-      </div>
-      <div class="feature-tile">
-        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-        <div class="feature-tile-name">Mobile Dashboard</div>
-      </div>
-      <div class="feature-tile">
-        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
-        <div class="feature-tile-name">Excel Export</div>
-      </div>
-      <div class="feature-tile">
-        <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
-        <div class="feature-tile-name">Business Benchmarking</div>
-      </div>
-    </div>
+      <ul class="prompt-toc-list">
+        <li>
+          <a href="#prompt-1">
+            <span class="prompt-toc-num">01</span>
+            <span class="prompt-toc-text">
+              <span class="prompt-toc-name">CPA Validation Layer</span>
+              <span class="prompt-toc-tag">Analytical Integrity</span>
+            </span>
+            <svg class="prompt-toc-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="#prompt-2">
+            <span class="prompt-toc-num">02</span>
+            <span class="prompt-toc-text">
+              <span class="prompt-toc-name">AI Financials Engine</span>
+              <span class="prompt-toc-tag">Small Business</span>
+            </span>
+            <svg class="prompt-toc-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="#prompt-3">
+            <span class="prompt-toc-num">03</span>
+            <span class="prompt-toc-text">
+              <span class="prompt-toc-name">Credit Card Spend Analyzer</span>
+              <span class="prompt-toc-tag">Personal Finance</span>
+            </span>
+            <svg class="prompt-toc-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="#prompt-4">
+            <span class="prompt-toc-num">04</span>
+            <span class="prompt-toc-text">
+              <span class="prompt-toc-name">True Cost of Homebuying</span>
+              <span class="prompt-toc-tag">Real Estate</span>
+            </span>
+            <svg class="prompt-toc-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-    <!-- Hero card -->
-    <div class="prompt-card featured fade-in">
+    <div class="lib-grid">
+
+      <!-- ============================
+           PROMPT 01 — CPA Validation Layer
+           ============================ -->
+      <div class="prompt-card fade-in" id="prompt-1">
+        <div class="prompt-card-head">
+          <div class="prompt-tag-row">
+            <span class="prompt-tag">Analytical Integrity</span>
+            <span class="prompt-tag">CPA-built</span>
+          </div>
+          <div class="prompt-title-row">
+            <span class="prompt-number-badge">01</span>
+            <div class="prompt-title">CPA Validation Layer</div>
+          </div>
+          <p class="prompt-desc">A CPA-built guardrail prompt that forces AI to separate verified facts from assumptions, flag missing data, and clearly label anything that requires validation. Layer it onto any other financial prompt to remove false confidence and surface what actually needs management review.</p>
+        </div>
+        <div class="prompt-io">
+          <div class="prompt-io-block needs">
+            <h4>What you need</h4>
+            <ul>
+              <li>Any financial analysis prompt</li>
+              <li>About 2 minutes to layer it in</li>
+            </ul>
+          </div>
+          <div class="prompt-io-block gets">
+            <h4>What you get</h4>
+            <ul>
+              <li>Facts vs. assumptions, clearly labeled</li>
+              <li>Missing data explicitly flagged</li>
+              <li>Confidence levels on conclusions</li>
+              <li>A "Requires Validation" summary</li>
+            </ul>
+          </div>
+        </div>
+        <div class="prompt-copy-bar">
+          <div class="copy-label">Works in <b>ChatGPT</b> or <b>Claude</b></div>
+          <button class="copy-btn" onclick="copyPrompt('validationPrompt', this)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy Prompt
+          </button>
+        </div>
+        <button class="prompt-toggle" onclick="togglePrompt(this, 'validationBody')">
+          <span>View full prompt</span>
+          <span class="chev"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="prompt-body" id="validationBody">
+          <div class="prompt-box" id="validationPrompt">############################################################
+FINANCIAL ANALYSIS VALIDATION LAYER
+############################################################
+
+Apply the following rules to ALL analysis performed in this prompt.
+
+Your primary objective is:
+- factual accuracy
+- analytical integrity
+- clear separation between facts, assumptions, and missing information
+
+You must prioritize reliability over sounding confident.
+
+############################################################
+GLOBAL RULES
+############################################################
+
+You must NEVER:
+- fabricate metrics
+- invent business drivers
+- invent operational trends
+- invent KPIs
+- infer unsupported conclusions
+- present assumptions as facts
+- imply certainty where uncertainty exists
+
+If information was NOT explicitly provided:
+state that the information was not provided.
+
+If a conclusion cannot be validated from the available data:
+clearly state that additional validation is required.
+
+############################################################
+REQUIRED CLASSIFICATIONS
+############################################################
+
+All major findings, insights, explanations, and commentary must be classified as ONE of the following:
+
+1. VERIFIED FACT
+- directly supported by provided data
+- mathematically validated
+- observable from source records
+
+2. INFERENCE
+- logical interpretation based on available data
+- not directly proven
+- partially supported
+
+All inferences must explicitly state:
+"This is an inference based on available information."
+
+3. ASSUMPTION
+- hypothetical explanation
+- unsupported interpretation
+- estimated conclusion
+
+All assumptions must explicitly state:
+"This assumption requires validation."
+
+4. MISSING DATA
+- required information was not provided
+- conclusion cannot be reliably determined
+
+All missing data items must explicitly state:
+"Additional supporting data is required."
+
+############################################################
+STRICT ANALYSIS RULES
+############################################################
+
+ONLY analyze:
+- provided information
+- mathematically derivable relationships
+- directly observable trends
+
+Do NOT:
+- create unsupported causal explanations
+- invent operational commentary
+- infer business conditions without support
+- fill informational gaps with confident language
+
+Unknown causes must remain UNKNOWN.
+
+############################################################
+VARIANCE ANALYSIS RULES
+############################################################
+
+Variance explanations must clearly distinguish between:
+- VERIFIED CAUSE
+- POSSIBLE CAUSE
+- UNKNOWN CAUSE
+
+If the cause cannot be validated:
+state:
+"Underlying cause cannot be confirmed from provided information."
+
+############################################################
+CONFIDENCE LEVELS
+############################################################
+
+For all major conclusions assign:
+- HIGH CONFIDENCE
+- MEDIUM CONFIDENCE
+- LOW CONFIDENCE
+
+Confidence must be based ONLY on:
+- completeness of data
+- reliability of support
+- degree of direct validation
+
+############################################################
+MATERIALITY RULE
+############################################################
+
+Do NOT silently determine your own materiality threshold.
+
+If no threshold was provided:
+state:
+"No materiality threshold was provided. Default analytical thresholds may not align with management judgment."
+
+############################################################
+OUTPUT REQUIREMENTS
+############################################################
+
+Include a dedicated section titled:
+
+"REQUIRES VALIDATION"
+
+This section must summarize:
+- assumptions
+- inferred conclusions
+- unsupported commentary
+- missing datasets
+- low confidence findings
+- areas requiring management review
+
+############################################################
+MOST IMPORTANT RULE
+############################################################
+
+If the data does not support a conclusion:
+DO NOT manufacture certainty.
+
+It is better to communicate uncertainty clearly than to provide a polished but unsupported explanation.
+
+############################################################
+END VALIDATION LAYER
+############################################################</div>
+        </div>
+      </div>
+
+    <!-- ============================
+         PROMPT 02 — AI Financials Engine
+         ============================ -->
+    <div class="prompt-card fade-in" id="prompt-2">
       <div class="prompt-card-head">
         <div class="prompt-tag-row">
-          <span class="prompt-tag featured">&star; Featured</span>
           <span class="prompt-tag">Small Business</span>
           <span class="prompt-tag">CPA-built</span>
         </div>
-        <div class="prompt-title">The Business Financial Intelligence System</div>
+        <div class="prompt-title-row">
+          <span class="prompt-number-badge">02</span>
+          <div class="prompt-title">AI Financials Engine</div>
+        </div>
         <p class="prompt-desc">A single prompt that turns your raw transaction data into a complete, decision-ready financial analysis &mdash; statements, forecasts, savings, growth, audit flags &mdash; delivered as both an interactive HTML dashboard and a structured Excel workbook.</p>
+      </div>
+
+      <!-- Feature grid -->
+      <div class="feature-grid fade-in" style="margin:18px 22px 0;">
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <div class="feature-tile-name">Financial Statements</div>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+          <div class="feature-tile-name">Forecasting</div>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <div class="feature-tile-name">Savings Analysis</div>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <div class="feature-tile-name">Growth Opportunities</div>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+          <div class="feature-tile-name">Audit Detection</div>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <div class="feature-tile-name">Mobile Dashboard</div>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+          <div class="feature-tile-name">Excel Export</div>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <div class="feature-tile-name">Business Benchmarking</div>
+        </div>
       </div>
 
       <!-- IO triplet: Upload / Get / Built for -->
@@ -2043,26 +2363,17 @@ STRICT RULES
 - No partial outputs</div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- DIVIDER -->
-<div class="section-divider"><div class="divider-mark"></div></div>
-
-<!-- LIBRARY -->
-<section id="library">
-  <div class="container-narrow">
-    <div class="section-head fade-in">
-      <div class="eyebrow">More prompts</div>
-      <h2>Specialized prompts. <em>Free to copy.</em></h2>
-      <p class="section-sub">More AI systems for personal finance and high-stakes decisions.</p>
-    </div>
-    <div class="lib-grid">
-      <!-- Credit Card Spend Analyzer -->
-      <div class="prompt-card fade-in">
+    <!-- ============================
+         PROMPT 03 — Credit Card Spend Analyzer
+         ============================ -->
+      <div class="prompt-card fade-in" id="prompt-3">
         <div class="prompt-card-head">
           <div class="prompt-tag-row"><span class="prompt-tag">Personal Finance</span></div>
-          <div class="prompt-title">Credit Card Spend Analyzer</div>
+          <div class="prompt-title-row">
+            <span class="prompt-number-badge">03</span>
+            <div class="prompt-title">Credit Card Spend Analyzer</div>
+          </div>
           <p class="prompt-desc">Paste your credit card transactions. Get a full credit card spending breakdown &mdash; categorized spend, hidden subscriptions, merchant flags, and exactly where your card was used.</p>
         </div>
         <div class="prompt-io">
@@ -2641,11 +2952,16 @@ Output ONLY a complete HTML file with embedded CSS and JavaScript.</div>
         </div>
       </div>
 
-      <!-- Homebuying -->
-      <div class="prompt-card fade-in">
+      <!-- ============================
+           PROMPT 04 — True Cost of Homebuying
+           ============================ -->
+      <div class="prompt-card fade-in" id="prompt-4">
         <div class="prompt-card-head">
           <div class="prompt-tag-row"><span class="prompt-tag">Real Estate</span></div>
-          <div class="prompt-title">True Cost of Homebuying</div>
+          <div class="prompt-title-row">
+            <span class="prompt-number-badge">04</span>
+            <div class="prompt-title">True Cost of Homebuying</div>
+          </div>
           <p class="prompt-desc">Paste a property listing. Get a full true-cost-of-ownership breakdown &mdash; principal, interest, taxes, insurance, maintenance, and break-even vs. renting.</p>
         </div>
         <div class="prompt-io">
